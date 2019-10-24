@@ -2,7 +2,7 @@ package es.saladillo.alejandrodiaz.projectdex.ui.login.signup;
 
 import androidx.lifecycle.ViewModel;
 
-import es.saladillo.alejandrodiaz.projectdex.data.LoginRepository;
+import es.saladillo.alejandrodiaz.projectdex.ui.login.LoginRepository;
 
 public class SignUpFragmentViewModel extends ViewModel {
 

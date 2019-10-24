@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.data;
+package es.saladillo.alejandrodiaz.projectdex.ui.login;
 
 public interface LoginRepository {
     void signIn(String email, String password);

@@ -5,5 +5,17 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.login.signin.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/actionSignIntoSignUp"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.login.signup.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">ProjectDex</string>
-    <string name="fragment_login_txtLEmail">Email</string>
-    <string name="fragment_login_txtLPassword">Password</string>
-    <string name="fragment_login_btnLogin">Log in</string>
-    <string name="fragment_login_lblForgotPassword">Forgot passsword?</string>
-    <string name="fragment_login_lblNotRegistered">Don\'t have an account? Sign up</string>
+    <string name="fragment_signin_txtLEmail">Email</string>
+    <string name="fragment_signin_txtLPassword">Password</string>
+    <string name="fragment_signin_btnLogin">Log in</string>
+    <string name="fragment_signin_lblForgotPassword">Forgot passsword?</string>
+    <string name="fragment_signin_lblNotRegistered">Don\'t have an account? Sign up</string>
+    <string name="fragment_signup_btnLogin">Sign Up</string>
+    <string name="fragment_signup_txtEmail">Email</string>
+    <string name="fragment_signup_txtLPassword">Password</string>
+    <string name="fragment_signup_ReturnSignIn">Have an account? Log in</string>
 </resources>

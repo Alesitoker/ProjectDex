@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import es.saladillo.alejandrodiaz.projectdex.data.LoginRepository;
+import es.saladillo.alejandrodiaz.projectdex.ui.login.LoginRepository;
 
-public class signUpFragmentViewModelFactory implements ViewModelProvider.Factory {
+public class SignUpFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private LoginRepository loginRepository;
 
-    public signUpFragmentViewModelFactory(LoginRepository loginRepository) {
+    public SignUpFragmentViewModelFactory(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
