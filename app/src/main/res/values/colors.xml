@@ -7,9 +7,11 @@
     <color name="black">#000000</color>
     <color name="DarkGray">#A9A9A9</color>
     <color name="vivid_blue">#0099ff</color>
-    <color name="blue_1">#0099e6</color>
+    <color name="blue_button">#0099e6</color>
+    <color name="blue_button_disabled">#79C9F2</color>
+    <color name="blue_2">#33ccff</color>
     <color name="pale_yellowGreen">#ccff99</color>
-    <color name="green_1">#00cc66</color>
+    <color name="green_button">#00cc66</color>
+    <color name="green_button_disabled">#72E5AC</color>
     <color name="gray">#e6e6e6</color>
-    <color name="blue_2">#006bb3</color>
 </resources>

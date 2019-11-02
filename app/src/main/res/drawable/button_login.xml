@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-        android:angle="135"
-        android:startColor="@color/blue_1"
-        android:endColor="@color/green_1"
-        />
-    <corners
-        android:radius="4dp"
-        />
-
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/button_default_login" android:state_enabled="true" />
+    <item android:drawable="@drawable/button_disabled_login" android:state_enabled="false" />
+    <!-- default state-->
+    <item android:drawable="@drawable/button_default_login" />
+</selector>

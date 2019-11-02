@@ -1,7 +1,6 @@
 package es.saladillo.alejandrodiaz.projectdex.ui.login.signin;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
-import es.saladillo.alejandrodiaz.projectdex.ui.login.LoginFirebaseRepository;
+import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
+import es.saladillo.alejandrodiaz.projectdex.data.LoginFirebaseRepository;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentSigninBinding;
+import es.saladillo.alejandrodiaz.projectdex.utils.KeyboardUtils;
+import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
+import es.saladillo.alejandrodiaz.projectdex.utils.TextUtils;
 
 public class SignInFragment extends Fragment {
 
@@ -37,20 +40,44 @@ public class SignInFragment extends Fragment {
                 new LoginFirebaseRepository())).get(SignInFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupViews();
+        observeErrorMessage();
+        observeSuccessMessage();
     }
 
     private void setupViews() {
-        b.btnLogin.setOnClickListener(v -> signIn(b.txtEmail.getText().toString().replaceAll("\\s+",""),
-                b.txtPassword.getText().toString().replaceAll("\\s+","")));
+        b.btnLogin.setOnClickListener(v -> signIn(b.txtEmail.getText().toString(),
+                b.txtPassword.getText().toString()));
         b.lblNotRegistered.setOnClickListener(v -> navigateToSignUp());
+
+        b.txtEmail.addTextChangedListener((TextUtils.AfterTextChanged) editable -> enableButton());
+        b.txtPassword.addTextChangedListener((TextUtils.AfterTextChanged) editable -> enableButton());
+    }
+
+    private void enableButton() {
+        if (b.txtEmail.getText().toString().isEmpty() || b.txtPassword.getText().toString().isEmpty()) {
+            b.btnLogin.setEnabled(false);
+        } else {
+            b.btnLogin.setEnabled(true);
+        }
     }
 
     private void signIn(String email, String password) {
-        if (email.isEmpty() || password.isEmpty()) {
-            Log.d("agua", "Estoy vacio");
-        } else {
-            viewModel.signIn(email, password);
-        }
+        viewModel.signIn(email, password);
+        KeyboardUtils.hideSoftKeyboard(requireActivity());
+    }
+
+    private void observeErrorMessage() {
+        viewModel.errorMessage().observe(getViewLifecycleOwner(),
+                new EventObserver<>(this::showMessage));
+    }
+
+    private void observeSuccessMessage() {
+        viewModel.successMessage().observe(getViewLifecycleOwner(),
+                new EventObserver<>(this::showMessage));
+    }
+
+    private void showMessage(String message) {
+        SnackbarUtils.snackbar(requireView(), message);
     }
 
     private void navigateToSignUp() {

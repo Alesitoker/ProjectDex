@@ -74,6 +74,7 @@
             android:textColor="@color/gray"
             android:text="@string/fragment_signup_btnLogin"
             android:textStyle="bold"
+            android:enabled="false"
             android:background="@drawable/button_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

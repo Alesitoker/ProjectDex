@@ -5,7 +5,7 @@
     <data>
 
     </data>
-
+    <!--TODO: Cambiar tamaños por recursos de dimensión-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clRootLogin"
         android:layout_width="match_parent"
@@ -90,6 +90,7 @@
             android:textColor="@color/gray"
             android:text="@string/fragment_signin_btnLogin"
             android:textStyle="bold"
+            android:enabled="false"
             android:background="@drawable/button_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
