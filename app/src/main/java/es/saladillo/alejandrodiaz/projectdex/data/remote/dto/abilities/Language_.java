@@ -1,5 +1,5 @@
 
-package com.pokedex;
+package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.abilities;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,10 +1,10 @@
 
-package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.types;
+package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokedex;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Language {
+public class Result {
 
     @SerializedName("name")
     @Expose

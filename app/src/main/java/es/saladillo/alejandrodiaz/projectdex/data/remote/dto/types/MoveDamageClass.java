@@ -1,5 +1,5 @@
 
-package com.types;
+package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.types;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

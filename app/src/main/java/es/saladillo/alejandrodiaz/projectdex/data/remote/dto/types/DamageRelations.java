@@ -1,5 +1,5 @@
 
-package com.types;
+package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.types;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

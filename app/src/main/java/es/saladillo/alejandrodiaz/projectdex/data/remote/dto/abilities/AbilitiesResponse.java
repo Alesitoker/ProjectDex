@@ -1,11 +1,11 @@
 
-package com.pokedex;
+package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.abilities;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Abilities {
+public class AbilitiesResponse {
 
     @SerializedName("id")
     @Expose
