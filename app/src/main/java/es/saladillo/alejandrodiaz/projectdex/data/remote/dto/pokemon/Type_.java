@@ -1,6 +1,8 @@
 
 package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -29,4 +31,9 @@ public class Type_ {
         this.url = url;
     }
 
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return obj instanceof Type_ && name.equals(((Type_) obj).name) &&
+                url.equals(((Type_) obj).url);
+    }
 }

@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class PokemonListFragmentViewModelFactory implements ViewModelProvider.Factory {
+public class ListPokemonFragmentViewModelFactory implements ViewModelProvider.Factory {
 
-    public PokemonListFragmentViewModelFactory() {
+    public ListPokemonFragmentViewModelFactory() {
     }
 
     @NonNull
