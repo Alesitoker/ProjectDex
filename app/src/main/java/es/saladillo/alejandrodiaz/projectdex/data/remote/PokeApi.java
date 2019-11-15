@@ -5,14 +5,15 @@ import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.PokemonResp
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PokeApi {
 
-    @GET("Pokemon")
-    Call<PokemonResponse> obtainPokemon(@Query("id") int id);
-    @GET("Pokemon")
-    Call<PokemonResponse> obtainPokemon(@Query("name") String name);
-    @GET("Pokemon?limit=20")
-    Call<PokeAll> queryPokemon(@Query("offset") int position);
+    @GET("pokemon/{id}")
+    Call<PokemonResponse> obtainPokemon(@Path("id") int id);
+    @GET("pokemon/{name}")
+    Call<PokemonResponse> obtainPokemon(@Path("name") String name);
+    @GET("pokemon")
+    Call<PokeAll> queryPokemon(@Query("limit") int limit, @Query("offset") int position);
 }

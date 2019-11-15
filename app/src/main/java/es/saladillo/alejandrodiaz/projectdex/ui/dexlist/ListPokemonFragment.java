@@ -14,7 +14,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
+import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentListPokemonBinding;
+import es.saladillo.alejandrodiaz.projectdex.di.Injector;
+import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 
 public class ListPokemonFragment extends Fragment {
 
@@ -33,18 +36,24 @@ public class ListPokemonFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory()).get(ListPokemonFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupViews();
         observe();
     }
 
     private void observe() {
+        viewModel.getPokemons().observe(this, pokemons -> listAdapter.submitList(pokemons));
+        viewModel.getMessage().observe(this, new EventObserver<>(this::showMessage));
+    }
 
+    private void showMessage(String message) {
+        SnackbarUtils.snackbar(requireView(), message);
     }
 
     private void setupViews() {
         setupRecyclerView();
+        viewModel.queryPokemons();
     }
 
     private void setupRecyclerView() {
