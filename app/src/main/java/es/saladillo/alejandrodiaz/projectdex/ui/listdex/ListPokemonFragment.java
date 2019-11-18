@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.dexlist;
+package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

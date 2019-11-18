@@ -20,7 +20,7 @@
         android:label="SignUpFragment" />
     <fragment
         android:id="@+id/pokemonListFragment"
-        android:name="es.saladillo.alejandrodiaz.projectdex.ui.dexlist.ListPokemonFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.listdex.ListPokemonFragment"
         android:label="PokemonListFragment" >
         <action
             android:id="@+id/action_pokemonListFragment_to_pokemonDetailFragment"
@@ -28,6 +28,6 @@
     </fragment>
     <fragment
         android:id="@+id/pokemonDetailFragment"
-        android:name="es.saladillo.alejandrodiaz.projectdex.ui.dexDetail.PokemonDetailFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.detaildex.PokemonDetailFragment"
         android:label="PokemonDetailFragment" />
 </navigation>

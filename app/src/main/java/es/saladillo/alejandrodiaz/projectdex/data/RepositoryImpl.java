@@ -8,14 +8,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import es.saladillo.alejandrodiaz.projectdex.base.Resource;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.data.mapper.PokemonMapper;
-import es.saladillo.alejandrodiaz.projectdex.data.remote.PokeApi;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.PokeApiImpl;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokedex.PokeAll;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokedex.Result;
@@ -31,7 +27,7 @@ public class RepositoryImpl implements Repository {
     private final int LIMIT = 20;
     private MutableLiveData<Resource<PokemonResponse>> liveData = new MutableLiveData<>();
     private MutableLiveData<Resource<List<Pokemon>>> liveDataPokemons = new MutableLiveData<>();
-    private Pokemon pokemon;
+    private List<Pokemon> pokemons = new ArrayList<>();
 
     private RepositoryImpl(PokeApiImpl pokeApi) {
         POKEAPI = pokeApi;
@@ -98,8 +94,8 @@ public class RepositoryImpl implements Repository {
             @Override
             public void onResponse(@NonNull Call<PokeAll> call, @NonNull Response<PokeAll> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                        liveDataPokemons.postValue(Resource.success(
-                                convertResultPokemon(response.body().getResults())));
+                    liveDataPokemons.postValue(Resource.success(
+                            convertResultPokemon(response.body().getResults())));
                 } else {
                     liveDataPokemons.postValue(Resource.error(new Exception(response.message())));
                 }
@@ -114,20 +110,11 @@ public class RepositoryImpl implements Repository {
     }
 
     private List<Pokemon> convertResultPokemon(List<Result> results) {
-        List<Pokemon> pokemons = new ArrayList<>();
 
         //TODO: Si dejos los tags cambiarlo por una variable
         for(Result result : results) {
-            Log.d("agua", result.getName());
             obtainPokemon(result.getName());
-
-//            if (pokemon.hasSuccess()) {
-//                pokemons.add(pokemon.getData());
-//            } else if (pokemon.hasError()) {
-//                cancel("Asd");
-//            }
         }
-
         return pokemons;
     }
     // TODO: borrar si no lo utilizas
@@ -135,10 +122,11 @@ public class RepositoryImpl implements Repository {
         Call<PokemonResponse> call = POKEAPI.getPOKEAPI().obtainPokemon(name);
         call.enqueue(new Callback<PokemonResponse>() {
             @Override
-            public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
+            public synchronized void onResponse(@NonNull Call<PokemonResponse> call,
+                                                @NonNull Response<PokemonResponse> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.d("agua", "no se sabe");
-                    pokemon = PokemonMapper.map(response.body());
+                    Log.d("agua", response.body().getName());
+                    pokemons.add(PokemonMapper.map(response.body()));
                 } else {
                     Log.d("agua", "no pi");
                     Resource.error(new Exception(response.message()));

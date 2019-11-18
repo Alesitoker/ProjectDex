@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.dexDetail;
+package es.saladillo.alejandrodiaz.projectdex.ui.detaildex;
 
 import androidx.lifecycle.ViewModel;
 

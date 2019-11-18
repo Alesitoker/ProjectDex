@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.dexlist;
+package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -20,6 +20,7 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private final MediatorLiveData<List<Pokemon>> pokemons = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> message = new MediatorLiveData<>();
     private Repository repository;
+    private int offset = 0;
 
 
     public ListPokemonFragmentViewModel(Repository repository) {
@@ -35,7 +36,8 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private void setupReplyQuery() {
         pokemons.addSource(queryPokemonsReply, resource -> {
             if (resource.hasSuccess()) {
-                pokemons.setValue(resource.getData());
+                pokemons.postValue(resource.getData());
+                offset += 20;
             }
         });
     }
@@ -49,7 +51,7 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     }
 
     public void queryPokemons() {
-        queryPokemonsTrigger.setValue(0);
+            queryPokemonsTrigger.setValue(offset);
     }
 
     public LiveData<List<Pokemon>> getPokemons() {

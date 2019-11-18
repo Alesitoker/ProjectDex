@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.dexlist;
+package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

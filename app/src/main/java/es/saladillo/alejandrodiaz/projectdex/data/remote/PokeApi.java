@@ -15,5 +15,5 @@ public interface PokeApi {
     @GET("pokemon/{name}")
     Call<PokemonResponse> obtainPokemon(@Path("name") String name);
     @GET("pokemon")
-    Call<PokeAll> queryPokemon(@Query("limit") int limit, @Query("offset") int position);
+    Call<PokeAll> queryPokemon(@Query("limit") int limit, @Query("offset") int offset);
 }

@@ -101,13 +101,13 @@ public class Sprites {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        return obj instanceof Sprites && backDefault.equals(((Sprites) obj).backDefault) &&
-                backFemale.equals(((Sprites) obj).backFemale) &&
-                backShiny.equals(((Sprites) obj).backShiny) &&
-                backShinyFemale.equals(((Sprites) obj).backShinyFemale) &&
-                frontDefault.equals(((Sprites) obj).frontDefault) &&
-                frontFemale.equals(((Sprites) obj).frontFemale) &&
-                frontShiny.equals(((Sprites) obj).frontShiny) &&
-                frontShinyFemale.equals(((Sprites) obj).frontShinyFemale);
+        return obj instanceof Sprites && TextUtils.equals(backDefault, ((Sprites) obj).backDefault) &&
+                TextUtils.equals(backFemale, ((Sprites) obj).backFemale) &&
+                TextUtils.equals(backShiny, ((Sprites) obj).backShiny) &&
+                TextUtils.equals(backShinyFemale, ((Sprites) obj).backShinyFemale) &&
+                TextUtils.equals(frontDefault, ((Sprites) obj).frontDefault) &&
+                TextUtils.equals(frontFemale, ((Sprites) obj).frontFemale) &&
+                TextUtils.equals(frontShiny, ((Sprites) obj).frontShiny) &&
+                TextUtils.equals(frontShinyFemale, ((Sprites) obj).frontShinyFemale);
     }
 }
