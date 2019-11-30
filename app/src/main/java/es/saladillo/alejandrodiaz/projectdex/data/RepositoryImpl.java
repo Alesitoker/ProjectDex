@@ -25,12 +25,16 @@ public class RepositoryImpl implements Repository {
     private static RepositoryImpl instance;
     private final PokeApiImpl POKEAPI;
     private final int LIMIT = 20;
-    private MutableLiveData<Resource<PokemonResponse>> liveData = new MutableLiveData<>();
-    private MutableLiveData<Resource<List<Pokemon>>> liveDataPokemons = new MutableLiveData<>();
-    private List<Pokemon> pokemons = new ArrayList<>();
+    private MutableLiveData<Resource<PokemonResponse>> liveData;
+    private MutableLiveData<Resource<List<Pokemon>>> liveDataPokemons;
+    private List<Pokemon> pokemons;
 
     private RepositoryImpl(PokeApiImpl pokeApi) {
         POKEAPI = pokeApi;
+
+        liveData = new MutableLiveData<>();
+        liveDataPokemons = new MutableLiveData<>();
+        pokemons = new ArrayList<>();
     }
 
     public static RepositoryImpl getInstance(PokeApiImpl pokeApi) {
@@ -94,8 +98,8 @@ public class RepositoryImpl implements Repository {
             @Override
             public void onResponse(@NonNull Call<PokeAll> call, @NonNull Response<PokeAll> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    liveDataPokemons.postValue(Resource.success(
-                            convertResultPokemon(response.body().getResults())));
+                    convertResultPokemon(response.body().getResults());
+                    liveDataPokemons.postValue(Resource.success(pokemons));
                 } else {
                     liveDataPokemons.postValue(Resource.error(new Exception(response.message())));
                 }
@@ -109,40 +113,37 @@ public class RepositoryImpl implements Repository {
         return liveDataPokemons;
     }
 
-    private List<Pokemon> convertResultPokemon(List<Result> results) {
-
-        //TODO: Si dejos los tags cambiarlo por una variable
+    private void convertResultPokemon(List<Result> results) {
         for(Result result : results) {
             obtainPokemon(result.getName());
         }
-        return pokemons;
     }
-    // TODO: borrar si no lo utilizas
+
     private void obtainPokemon(String name) {
         Call<PokemonResponse> call = POKEAPI.getPOKEAPI().obtainPokemon(name);
         call.enqueue(new Callback<PokemonResponse>() {
             @Override
-            public synchronized void onResponse(@NonNull Call<PokemonResponse> call,
+            public void onResponse(@NonNull Call<PokemonResponse> call,
                                                 @NonNull Response<PokemonResponse> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.d("agua", response.body().getName());
                     pokemons.add(PokemonMapper.map(response.body()));
+
+                    liveDataPokemons.postValue(Resource.success(new ArrayList<>(pokemons)));
                 } else {
-                    Log.d("agua", "no pi");
-                    Resource.error(new Exception(response.message()));
+                    liveDataPokemons.postValue(Resource.error(new Exception(response.message())));
                     cancel("ASD");
                 }
             }
 
             @Override
             public void onFailure(Call<PokemonResponse> call, @NonNull Throwable t) {
-                Log.d("agua", "erroror");
-                Resource.error(new Exception(t.getMessage()));
+                liveDataPokemons.postValue(Resource.error(new Exception(t.getMessage())));
                 cancel("asd");
             }
         });
     }
 
+    //TODO: Añadir un cancel.
     @Override
     public void cancel(String tag) {
 

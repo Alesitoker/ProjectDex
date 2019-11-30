@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.Type;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentItemPokemonBinding;
+import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
+import es.saladillo.alejandrodiaz.projectdex.utils.StringUtils;
 
 public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemonFragmentAdapter.ViewHolder> {
 
@@ -68,9 +68,8 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
 
         public void bind(Pokemon pokemon) {
             b.lblPkmNumber.setText(String.valueOf(pokemon.getId()));
-            b.lblPkmName.setText(pokemon.getName());
-            Picasso.with(b.getRoot().getContext()).load(pokemon.getSprites().
-                    getFrontDefault()).into(b.imgPkm);
+            b.lblPkmName.setText(StringUtils.CapitalizeFirstLetter(pokemon.getName()));
+            PicassoUtils.loadUrl(b.imgPkm, pokemon.getSprites().getFrontDefault());
             for (Type type : pokemon.getTypes()) {
                 if (type.getSlot() == 1) {
                     b.lblType1.setText(type.getType().getName());

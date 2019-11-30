@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import es.saladillo.alejandrodiaz.projectdex.base.Event;
@@ -20,6 +23,7 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private final MediatorLiveData<List<Pokemon>> pokemons = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> message = new MediatorLiveData<>();
     private Repository repository;
+    private final int SUMOFFSET = 20;
     private int offset = 0;
 
 
@@ -36,8 +40,12 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private void setupReplyQuery() {
         pokemons.addSource(queryPokemonsReply, resource -> {
             if (resource.hasSuccess()) {
-                pokemons.postValue(resource.getData());
-                offset += 20;
+                List<Pokemon> listPokemon = resource.getData();
+                Collections.sort(listPokemon, (o1, o2) -> Integer.compare(o1.getId(), o2.getId()));
+                pokemons.postValue(listPokemon);
+                //Comprobar que el limite de pokemon se ha obtenido.
+                if (resource.getData().size() == offset + SUMOFFSET)
+                    offset += SUMOFFSET;
             }
         });
     }

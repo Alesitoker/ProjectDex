@@ -12,7 +12,7 @@ public interface Repository {
 
     LiveData<Resource<PokemonResponse>> getPokemon(int id, String tag);
     LiveData<Resource<PokemonResponse>> getPokemon(String name, String tag);
-    LiveData<Resource<List<Pokemon>>> queryPokemons(int position);
+    LiveData<Resource<List<Pokemon>>> queryPokemons(int offset);
 
     void cancel(String tag);
 }

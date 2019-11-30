@@ -36,7 +36,8 @@ public class ListPokemonFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(
+                Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupViews();
         observe();
