@@ -81,6 +81,6 @@ public class SignInFragment extends Fragment {
     }
 
     private void navigateToSignUp() {
-        navController.navigate(R.id.actionSignIntoSignUp);
+        navController.navigate(R.id.actionSignInToSignUp);
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
-    app:startDestination="@id/pokemonListFragment">
+    app:startDestination="@id/listPokemonFragment">
     <fragment
         android:id="@+id/signInFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.login.signin.SignInFragment"
-        android:label="SignInFragment" >
+        android:label="SignIn" >
         <action
-            android:id="@+id/actionSignIntoSignUp"
+            android:id="@+id/actionSignInToSignUp"
             app:destination="@id/signUpFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -17,17 +17,26 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.login.signup.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUp" />
     <fragment
-        android:id="@+id/pokemonListFragment"
+        android:id="@+id/listPokemonFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.listdex.ListPokemonFragment"
-        android:label="PokemonListFragment" >
+        android:label="Pokedex" >
         <action
-            android:id="@+id/action_pokemonListFragment_to_pokemonDetailFragment"
-            app:destination="@id/pokemonDetailFragment" />
+            android:id="@+id/actionListPokemonToPokemonDetail"
+            app:destination="@id/pokemonDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/pokemonDetailFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.detaildex.PokemonDetailFragment"
-        android:label="PokemonDetailFragment" />
+        android:label="Pokemon Detail" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="bulbasaur" />
+    </fragment>
 </navigation>

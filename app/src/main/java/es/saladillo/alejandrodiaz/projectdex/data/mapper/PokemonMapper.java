@@ -7,7 +7,7 @@ import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.PokemonResp
 public class PokemonMapper {
 
     public static Pokemon map(PokemonResponse pokemon) {
-        return new Pokemon(pokemon.getId(), pokemon.getName(), pokemon.getSprites(),
+        return new Pokemon(pokemon.getId(), pokemon.getOrder(),pokemon.getName(), pokemon.getSprites(),
                 pokemon.getTypes());
     }
 }

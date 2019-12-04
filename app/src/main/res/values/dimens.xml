@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sign In -->
+    <dimen name="fragment_signin_txtLEmail_padding">16dp</dimen>
+    <dimen name="fragment_signin_txtLPassword_padding">16dp</dimen>
+    <dimen name="fragment_signin_lblForgotPassword_margin">8dp</dimen>
+    <dimen name="fragment_signin_lblForgotPassword_paddingTop">12dp</dimen>
+    <dimen name="fragment_signin_lblForgotPassword_paddingBottom">18dp</dimen>
+    <dimen name="fragment_signin_btnLogin_marginStart">32dp</dimen>
+    <dimen name="fragment_signin_btnLogin_marginTop">8dp</dimen>
+    <dimen name="fragment_signin_btnLogin_marginEnd">32dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_marginStart">8dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_marginEnd">8dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_marginBottom">16dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_paddingTop">12dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_paddingBottom">16dp</dimen>
+    <!--  Sign Up  -->
+    <dimen name="fragment_signup_txtLEmail_padding">16dp</dimen>
+    <dimen name="fragment_signup_txtLPassword_padding">16dp</dimen>
+    <dimen name="fragment_signup_btnSignUp_marginStart">32dp</dimen>
+    <dimen name="fragment_signup_btnSignUp_marginTop">8dp</dimen>
+    <dimen name="fragment_signup_btnSignUp_marginEnd">32dp</dimen>
+    <dimen name="fragment_signup_lblReturnSignIn_paddingTop">12dp</dimen>
+    <dimen name="fragment_signup_lblReturnsSignIn_marginBottom">18dp</dimen>
+    <!--  Item  -->
+    <dimen name="fragment_item_pokemon_clItemRoot_padding">8dp</dimen>
+    <dimen name="fragment_item_pokemon_imgPkm_layout_width">120dp</dimen>
+    <dimen name="fragment_item_pokemon_imgPkm_layout_height">120dp</dimen>
+    <dimen name="fragment_item_pokemon_lblPkmNumber_layout_marginTop">18dp</dimen>
+    <dimen name="fragment_item_pokemon_lblPkmNumber_layout_marginStart">12dp</dimen>
+    <dimen name="fragment_item_pokemon_lblPkmName_layout_marginTop">18dp</dimen>
+    <dimen name="fragment_item_pokemon_lblPkmName_layout_marginStart">12dp</dimen>
+    <dimen name="fragment_item_pokemon_lblType1_layout_marginStart">12dp</dimen>
+    <dimen name="fragment_item_pokemon_lblType1_layout_marginEnd">12dp</dimen>
+    <dimen name="fragment_item_pokemon_lblType1_layout_marginTop">18dp</dimen>
+    <dimen name="fragment_item_pokemon_lblType2_layout_marginEnd">22dp</dimen>
+    <!--  Details  -->
+    <dimen name="fragment_pokemon_detail_imgPkm_layout_width">100dp</dimen>
+    <dimen name="fragment_pokemon_detail_imgPkm_layout_height">100dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblNumber_marginStart">12dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblNumber_marginTop">30dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblName_marginStart">12dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblName_marginTop">30dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType1_marginEnd">22dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType1_marginTop">16dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType1_marginStart">12dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType2_marginEnd">22dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType2_marginTop">16dp</dimen>
+
+</resources>

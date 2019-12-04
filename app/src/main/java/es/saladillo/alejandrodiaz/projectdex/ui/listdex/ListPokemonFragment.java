@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
+import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentListPokemonBinding;
 import es.saladillo.alejandrodiaz.projectdex.di.Injector;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
@@ -41,28 +43,43 @@ public class ListPokemonFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
         setupViews();
         observe();
+        if (savedInstanceState == null)
+            viewModel.queryPokemons();
     }
 
     private void observe() {
-        viewModel.getPokemons().observe(this, pokemons -> listAdapter.submitList(pokemons));
+        viewModel.getPokemons().observe(this, pokemons -> {
+            listAdapter.submitList(pokemons);
+            viewModel.queryPokemons();
+        });
         viewModel.getMessage().observe(this, new EventObserver<>(this::showMessage));
     }
 
     private void showMessage(String message) {
         SnackbarUtils.snackbar(requireView(), message);
+        viewModel.queryPokemons();
     }
 
     private void setupViews() {
         setupRecyclerView();
-        viewModel.queryPokemons();
+
     }
 
     private void setupRecyclerView() {
         listAdapter = new ListPokemonFragmentAdapter();
+        listAdapter.setOnSelectItemClickListener(position -> NavigateToDetailDex(listAdapter.getItem(position)));
 
         b.lstPokemon.setHasFixedSize(true);
         b.lstPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstPokemon_columns)));
+        b.lstPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         b.lstPokemon.setAdapter(listAdapter);
+    }
+
+    private void NavigateToDetailDex(Pokemon pokemon) {
+        ListPokemonFragmentDirections.ActionListPokemonToPokemonDetail action =
+                ListPokemonFragmentDirections.actionListPokemonToPokemonDetail()
+                        .setName(pokemon.getName());
+        navController.navigate(action);
     }
 
 

@@ -28,6 +28,7 @@ public class RepositoryImpl implements Repository {
     private MutableLiveData<Resource<PokemonResponse>> liveData;
     private MutableLiveData<Resource<List<Pokemon>>> liveDataPokemons;
     private List<Pokemon> pokemons;
+    private int offsetControl = -1;
 
     private RepositoryImpl(PokeApiImpl pokeApi) {
         POKEAPI = pokeApi;
@@ -76,7 +77,7 @@ public class RepositoryImpl implements Repository {
             @Override
             public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.d("agua", response.body().getName());
+                    Log.d("agua", response.body().getId()+ "   "+ response.body().getName());
                     liveData.postValue(Resource.success(response.body()));
                 } else {
                     liveData.postValue(Resource.error(new Exception(response.message())));
@@ -93,23 +94,28 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public LiveData<Resource<List<Pokemon>>> queryPokemons(int offset) {
-        Call<PokeAll> call = POKEAPI.getPOKEAPI().queryPokemon(LIMIT, offset);
-        call.enqueue(new Callback<PokeAll>() {
-            @Override
-            public void onResponse(@NonNull Call<PokeAll> call, @NonNull Response<PokeAll> response) {
-                if (response.body() != null && response.isSuccessful()) {
-                    convertResultPokemon(response.body().getResults());
-                    liveDataPokemons.postValue(Resource.success(pokemons));
-                } else {
-                    liveDataPokemons.postValue(Resource.error(new Exception(response.message())));
-                }
-            }
 
-            @Override
-            public void onFailure(Call<PokeAll> call, @NonNull Throwable t) {
-                liveDataPokemons.postValue(Resource.error(new Exception(t.getMessage())));
-            }
-        });
+
+            Call<PokeAll> call = POKEAPI.getPOKEAPI().queryPokemon(LIMIT, offset);
+            call.enqueue(new Callback<PokeAll>() {
+                @Override
+                public void onResponse(@NonNull Call<PokeAll> call, @NonNull Response<PokeAll> response) {
+                    if (response.body() != null && response.isSuccessful()) {
+                        if (offsetControl < offset) {
+                            convertResultPokemon(response.body().getResults());
+                            offsetControl = offset;
+                            liveDataPokemons.postValue(Resource.success(pokemons));
+                        }
+                    } else {
+                        liveDataPokemons.postValue(Resource.error(new Exception(response.message())));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PokeAll> call, @NonNull Throwable t) {
+                    liveDataPokemons.postValue(Resource.error(new Exception(t.getMessage())));
+                }
+            });
         return liveDataPokemons;
     }
 
