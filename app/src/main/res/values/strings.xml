@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ProjectDex</string>
-<!--    Login-->
+    <!--  Login  -->
     <string name="fragment_signin_txtLEmail">Email</string>
     <string name="fragment_signin_txtLPassword">Password</string>
     <string name="fragment_signin_btnLogin">Log in</string>
@@ -14,5 +14,17 @@
     <string name="error_weak_password">Password should be at least 6 characters</string>
     <string name="error_blankspace_password">Your password can\'t start or end with a blank space</string>
     <string name="error_character_password">Only use letters, numbers and common punctuation characters</string>
-<!--    -->
+    <!--  Data Detail  -->
+    <string name="data_pokemon_detail_lblSpecies">Species</string>
+    <string name="data_pokemon_detail_lblAbilities">Abilities</string>
+    <string name="data_pokemon_detail_lblAbilities_Separator">or</string>
+    <string name="data_pokemon_detail_lblBaseStats">Base Stats</string>
+    <string name="data_pokemon_detail_lblHP">HP</string>
+    <string name="data_pokemon_detail_lblAttack">Attack</string>
+    <string name="data_pokemon_detail_lblDefense">Defense</string>
+    <string name="data_pokemon_detail_lblSpAttack">Sp.Attack</string>
+    <string name="data_pokemon_detail_lblSpDefense">Sp.Defense</string>
+    <string name="data_pokemon_detail_lblSpeed">Speed</string>
+    <string name="data_pokemon_detail_lblTotalStats">Total</string>
+    <string name="data_pokemon_detail_lblEvolutionChain">Evolution Chain</string>
 </resources>

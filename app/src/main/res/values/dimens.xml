@@ -38,9 +38,9 @@
     <dimen name="fragment_pokemon_detail_imgPkm_layout_width">100dp</dimen>
     <dimen name="fragment_pokemon_detail_imgPkm_layout_height">100dp</dimen>
     <dimen name="fragment_pokemon_detail_lblNumber_marginStart">12dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblNumber_marginTop">30dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblNumber_marginTop">22dp</dimen>
     <dimen name="fragment_pokemon_detail_lblName_marginStart">12dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblName_marginTop">30dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblName_marginTop">22dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType1_marginEnd">22dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType1_marginTop">16dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType1_marginStart">12dp</dimen>

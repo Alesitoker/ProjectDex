@@ -37,6 +37,7 @@
             android:id="@+id/lblPkmName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_marginTop="@dimen/fragment_item_pokemon_lblPkmName_layout_marginTop"
             android:layout_marginStart="@dimen/fragment_item_pokemon_lblPkmName_layout_marginStart"
             app:layout_constraintStart_toEndOf="@+id/lblPkmNumber"

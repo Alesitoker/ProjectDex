@@ -2,13 +2,16 @@ package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.palette.graphics.Palette;
@@ -28,6 +31,8 @@ import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentItemPokemonBind
 import es.saladillo.alejandrodiaz.projectdex.ui.OnSelectItemClickListener;
 import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.StringUtils;
+
+import static es.saladillo.alejandrodiaz.projectdex.utils.ColorTypeUtils.obtainColor;
 
 public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemonFragmentAdapter.ViewHolder> {
 
@@ -117,64 +122,6 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
             }
         }
     }
+    
 
-    public int obtainColor(Type type) {
-        int color = Color.BLACK;
-        switch (type.getType().getName()) {
-            case "normal":
-                color = R.color.normal;
-                break;
-            case "fighting":
-                color = R.color.fighting;
-                break;
-            case "flying":
-                color = R.color.fliying;
-                break;
-            case "poison":
-                color = R.color.poison;
-                break;
-            case "ground":
-                color = R.color.ground;
-                break;
-            case "rock":
-                color = R.color.rock;
-                break;
-            case "bug":
-                color = R.color.bug;
-                break;
-            case "ghost":
-                color = R.color.ghost;
-                break;
-            case "steel":
-                color = R.color.steel;
-                break;
-            case "fire":color = R.color.fire;
-                break;
-            case "water":
-                color = R.color.water;
-                break;
-            case "grass":
-                color = R.color.grass;
-                break;
-            case "electric":
-                color = R.color.electric;
-                break;
-            case "psychic":
-                color = R.color.psychic;
-                break;
-            case "ice":
-                color = R.color.ice;
-                break;
-            case "dragon":
-                color = R.color.dragon;
-                break;
-            case "dark":
-                color = R.color.dark;
-                break;
-            case "fairy":
-                color = R.color.fairy;
-                break;
-        }
-        return color;
-    }
 }

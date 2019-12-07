@@ -1,25 +1,29 @@
 package es.saladillo.alejandrodiaz.projectdex.ui.detaildex;
 
-import android.graphics.Color;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.Event;
 import es.saladillo.alejandrodiaz.projectdex.base.Resource;
 import es.saladillo.alejandrodiaz.projectdex.data.Repository;
+import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.evolution.EvolutionChain;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.PokemonResponse;
-import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.Type;
+import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.species.PokemonSpecies;
 
 public class PokemonDetailFragmentViewModel extends ViewModel {
 
     private final MutableLiveData<String> queryPokemonTrigger = new MutableLiveData<>();
     private final LiveData<Resource<PokemonResponse>> queryPokemonsReply;
+    private final MutableLiveData<Integer> querySpecieTrigger = new MutableLiveData<>();
+    private final LiveData<Resource<PokemonSpecies>> querySpeciesReply;
+    private final MutableLiveData<Integer> queryEvolutionTrigger = new MutableLiveData<>();
+    private final LiveData<Resource<EvolutionChain>> queryEvolutionReply;
     private final MediatorLiveData<PokemonResponse> pokemon = new MediatorLiveData<>();
+    private final MediatorLiveData<PokemonSpecies> species = new MediatorLiveData<>();
+    private final MediatorLiveData<EvolutionChain> evolution = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> message = new MediatorLiveData<>();
     private Repository repository;
     private final String TAG = "cancel";
@@ -29,6 +33,11 @@ public class PokemonDetailFragmentViewModel extends ViewModel {
 
         queryPokemonsReply = Transformations.switchMap(queryPokemonTrigger, name ->
                 repository.getPokemon(name, TAG));
+        querySpeciesReply = Transformations.switchMap(querySpecieTrigger, id ->
+                repository.querySpecies(id));
+        queryEvolutionReply = Transformations.switchMap(queryEvolutionTrigger, id ->
+                repository.queryEvolutions(id));
+
         setupReplyQuery();
         setupMessage();
     }
@@ -39,6 +48,16 @@ public class PokemonDetailFragmentViewModel extends ViewModel {
                 pokemon.setValue(resource.getData());
             }
         });
+        species.addSource(querySpeciesReply, resource -> {
+            if(resource.hasSuccess()) {
+                species.setValue(resource.getData());
+            }
+        });
+        evolution.addSource(queryEvolutionReply, resource -> {
+            if(resource.hasSuccess()) {
+                evolution.setValue(resource.getData());
+            }
+        });
     }
 
     private void setupMessage() {
@@ -47,10 +66,28 @@ public class PokemonDetailFragmentViewModel extends ViewModel {
                 message.setValue(new Event<>(resource.getException().getMessage()));
             }
         });
+        message.addSource(querySpeciesReply, resource -> {
+            if (resource.hasError()) {
+                message.setValue(new Event<>(resource.getException().getMessage()));
+            }
+        });
+        message.addSource(queryEvolutionReply, resource -> {
+            if (resource.hasError()) {
+                message.setValue(new Event<>(resource.getException().getMessage()));
+            }
+        });
+    }
+
+    public void queryData() {
+
     }
 
     public void queryPokemon(String name) {
         queryPokemonTrigger.setValue(name);
+    }
+
+    public void querySpecie(int id) {
+        querySpecieTrigger.setValue(id);
     }
 
     public LiveData<PokemonResponse> getPokemon() {
@@ -61,63 +98,4 @@ public class PokemonDetailFragmentViewModel extends ViewModel {
         return message;
     }
 
-    public int obtainColor(Type type) {
-        int color = Color.BLACK;
-        switch (type.getType().getName()) {
-            case "normal":
-                color = R.color.normal;
-                break;
-            case "fighting":
-                color = R.color.fighting;
-                break;
-            case "flying":
-                color = R.color.fliying;
-                break;
-            case "poison":
-                color = R.color.poison;
-                break;
-            case "ground":
-                color = R.color.ground;
-                break;
-            case "rock":
-                color = R.color.rock;
-                break;
-            case "bug":
-                color = R.color.bug;
-                break;
-            case "ghost":
-                color = R.color.ghost;
-                break;
-            case "steel":
-                color = R.color.steel;
-                break;
-            case "fire":color = R.color.fire;
-                break;
-            case "water":
-                color = R.color.water;
-                break;
-            case "grass":
-                color = R.color.grass;
-                break;
-            case "electric":
-                color = R.color.electric;
-                break;
-            case "psychic":
-                color = R.color.psychic;
-                break;
-            case "ice":
-                color = R.color.ice;
-                break;
-            case "dragon":
-                color = R.color.dragon;
-                break;
-            case "dark":
-                color = R.color.dark;
-                break;
-            case "fairy":
-                color = R.color.fairy;
-                break;
-        }
-        return color;
-    }
 }

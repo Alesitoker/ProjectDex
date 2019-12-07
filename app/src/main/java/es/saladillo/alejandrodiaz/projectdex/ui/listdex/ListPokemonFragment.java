@@ -13,6 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
@@ -27,6 +28,7 @@ public class ListPokemonFragment extends Fragment {
     private ListPokemonFragmentViewModel viewModel;
     private ListPokemonFragmentAdapter listAdapter;
     private NavController navController;
+    private GridLayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -50,18 +52,36 @@ public class ListPokemonFragment extends Fragment {
     private void observe() {
         viewModel.getPokemons().observe(this, pokemons -> {
             listAdapter.submitList(pokemons);
-            viewModel.queryPokemons();
         });
         viewModel.getMessage().observe(this, new EventObserver<>(this::showMessage));
     }
 
     private void showMessage(String message) {
         SnackbarUtils.snackbar(requireView(), message);
-        viewModel.queryPokemons();
     }
 
     private void setupViews() {
         setupRecyclerView();
+        b.lstPokemon.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if(dy > 0) {
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+
+                    if (viewModel.isAptoParaCargar()) {
+                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+
+                            viewModel.setAptoParaCargar(false);
+                            viewModel.queryPokemons();
+                        }
+                    }
+                }
+            }
+        });
 
     }
 
@@ -70,7 +90,8 @@ public class ListPokemonFragment extends Fragment {
         listAdapter.setOnSelectItemClickListener(position -> NavigateToDetailDex(listAdapter.getItem(position)));
 
         b.lstPokemon.setHasFixedSize(true);
-        b.lstPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstPokemon_columns)));
+        layoutManager = new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstPokemon_columns));
+        b.lstPokemon.setLayoutManager(layoutManager);
         b.lstPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         b.lstPokemon.setAdapter(listAdapter);
     }

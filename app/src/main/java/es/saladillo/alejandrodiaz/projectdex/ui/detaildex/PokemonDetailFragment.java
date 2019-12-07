@@ -29,6 +29,8 @@ import es.saladillo.alejandrodiaz.projectdex.di.Injector;
 import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 
+import static es.saladillo.alejandrodiaz.projectdex.utils.ColorTypeUtils.obtainColor;
+
 public class PokemonDetailFragment extends Fragment {
 
     private FragmentPokemonDetailBinding b;
@@ -74,29 +76,29 @@ public class PokemonDetailFragment extends Fragment {
     }
 
     private void setupDetail(PokemonResponse pokemon) {
-        PicassoUtils.loadUrl(b.imgPkm, pokemon.getSprites().getFrontDefault());
-        b.lblNumber.setText(String.format("#%03d", pokemon.getId()));
-        b.lblName.setText(pokemon.getName());
+        PicassoUtils.loadUrl(b.dHeader.imgPkm, pokemon.getSprites().getFrontDefault());
+        b.dHeader.lblNumber.setText(String.format("#%03d", pokemon.getId()));
+        b.dHeader.lblName.setText(pokemon.getName());
         showType(pokemon.getTypes());
     }
 
     private void showType(List<Type> types) {
         for (Type type : types) {
             if (type.getSlot() == 1) {
-                b.lblType1.setText(type.getType().getName());
+                b.dHeader.lblType1.setText(type.getType().getName());
                 DrawableCompat.setTint(
-                        DrawableCompat.wrap(b.lblType1.getBackground()),
-                        ContextCompat.getColor(requireContext(), viewModel.obtainColor(type))
+                        DrawableCompat.wrap(b.dHeader.lblType1.getBackground()),
+                        ContextCompat.getColor(requireContext(), obtainColor(type))
                 );
                 if (types.size() == 1) {
-                    b.lblType2.setVisibility(View.GONE);
+                    b.dHeader.lblType2.setVisibility(View.GONE);
                 }
             } else {
-                b.lblType2.setVisibility(View.VISIBLE);
-                b.lblType2.setText(type.getType().getName());
+                b.dHeader.lblType2.setVisibility(View.VISIBLE);
+                b.dHeader.lblType2.setText(type.getType().getName());
                 DrawableCompat.setTint(
-                        DrawableCompat.wrap(b.lblType2.getBackground()),
-                        ContextCompat.getColor(requireContext(), viewModel.obtainColor(type))
+                        DrawableCompat.wrap(b.dHeader.lblType2.getBackground()),
+                        ContextCompat.getColor(requireContext(), obtainColor(type))
                 );
             }
         }
