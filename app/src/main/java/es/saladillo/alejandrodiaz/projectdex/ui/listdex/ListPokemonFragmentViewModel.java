@@ -27,8 +27,6 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private Repository repository;
     private final int SUMOFFSET = 20;
     private int offset = 0;
-    private boolean aptoParaCargar;
-
 
     public ListPokemonFragmentViewModel(Repository repository) {
         this.repository = repository;
@@ -47,10 +45,9 @@ public class ListPokemonFragmentViewModel extends ViewModel {
                 List<Pokemon> listPokemon = resource.getData();
                 Collections.sort(listPokemon, (o1, o2) -> Integer.compare(o1.getId(), o2.getId()));
                 pokemons.postValue(listPokemon);
-                //Comprobar que el limite de pokemon se ha obtenido.
+                //Comprobar que se han obtenido todos los pokemons.
                 if (resource.getData().size() == offset + SUMOFFSET)
                     offset += SUMOFFSET;
-                    aptoParaCargar = true;
             }
         });
     }
@@ -83,11 +80,4 @@ public class ListPokemonFragmentViewModel extends ViewModel {
         return message;
     }
 
-    public boolean isAptoParaCargar() {
-        return aptoParaCargar;
-    }
-
-    public void setAptoParaCargar(boolean aptoParaCargar) {
-        this.aptoParaCargar = aptoParaCargar;
-    }
 }
