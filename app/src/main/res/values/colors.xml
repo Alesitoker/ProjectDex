@@ -14,6 +14,12 @@
     <color name="green_button">#00cc66</color>
     <color name="green_button_disabled">#72E5AC</color>
     <color name="gray">#e6e6e6</color>
+    <color name="pink">#F8BBD0</color>
+    <color name="red">#EF5350</color>
+    <color name="yellow">#FFF59D</color>
+    <color name="light_green">#C5E1A5</color>
+    <color name="teal">#A7FFEB</color>
+    <color name="teal_2">#B2DFDB</color>
     <!--  Types  -->
     <color name="bug">#3B9950</color>
     <color name="dark">#5A5979</color>

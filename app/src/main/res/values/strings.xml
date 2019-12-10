@@ -15,6 +15,8 @@
     <string name="error_blankspace_password">Your password can\'t start or end with a blank space</string>
     <string name="error_character_password">Only use letters, numbers and common punctuation characters</string>
     <!--  Data Detail  -->
+    <string name="data_pokemon_detail_lblHeight">Height: %s m</string>
+    <string name="data_pokemon_detail_lblWeight">Weight: %s kg</string>
     <string name="data_pokemon_detail_lblSpecies">Species</string>
     <string name="data_pokemon_detail_lblAbilities">Abilities</string>
     <string name="data_pokemon_detail_lblAbilities_Separator">or</string>
@@ -27,4 +29,17 @@
     <string name="data_pokemon_detail_lblSpeed">Speed</string>
     <string name="data_pokemon_detail_lblTotalStats">Total</string>
     <string name="data_pokemon_detail_lblEvolutionChain">Evolution Chain</string>
+    <string name="data_pokemon_detail_lblHidden">Hidden</string>
+<!--    -->
+    <string name="id_pokemon">#%03d</string>
+    <string name="pokemonEvoName">%d - %s</string>
+    <string name="evolution_by_level">Level %d %s</string>
+    <string name="evolution_by_trade_with_heldItem">trade equipped with %s</string>
+    <string name="evolution_by_level_with_heldItem">level %s equipped with %s</string>
+    <string name="evolution_by_beauty">High beauty + Level</string>
+    <string name="evolution_by_knowMove">Know %s + Level</string>
+    <string name="evolution_by_partySpecie">Level + %s in the party</string>
+    <string name="evolution_by_partyType">Level %d + %s Pokémon in the party</string>
+    <string name="evolution_by_turn_upside_down">Level %d + turn upside-down</string>
+    <string name="evolution_by_Affection">%sLevel + %d of affection</string>
 </resources>

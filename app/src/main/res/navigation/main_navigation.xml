@@ -35,8 +35,8 @@
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.detaildex.PokemonDetailFragment"
         android:label="Pokemon Detail" >
         <argument
-            android:name="name"
-            app:argType="string"
-            android:defaultValue="bulbasaur" />
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

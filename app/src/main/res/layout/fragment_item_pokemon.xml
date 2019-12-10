@@ -18,6 +18,7 @@
             android:layout_width="@dimen/fragment_item_pokemon_imgPkm_layout_width"
             android:layout_height="@dimen/fragment_item_pokemon_imgPkm_layout_height"
             android:scaleType="centerCrop"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

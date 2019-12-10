@@ -4,6 +4,9 @@ package es.saladillo.alejandrodiaz.projectdex.data.remote.dto.evolution;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
+
 public class EvolutionDetail {
 
     @SerializedName("gender")
@@ -11,40 +14,40 @@ public class EvolutionDetail {
     private Object gender;
     @SerializedName("held_item")
     @Expose
-    private Object heldItem;
+    private HeldItem heldItem;
     @SerializedName("item")
     @Expose
-    private Object item;
+    private Item item;
     @SerializedName("known_move")
     @Expose
-    private Object knownMove;
+    private KnownMoveType knownMove;
     @SerializedName("known_move_type")
     @Expose
     private KnownMoveType knownMoveType;
     @SerializedName("location")
     @Expose
-    private Object location;
+    private Location location;
     @SerializedName("min_affection")
     @Expose
     private Integer minAffection;
     @SerializedName("min_beauty")
     @Expose
-    private Object minBeauty;
+    private Integer minBeauty;
     @SerializedName("min_happiness")
     @Expose
-    private Object minHappiness;
+    private Integer minHappiness;
     @SerializedName("min_level")
     @Expose
-    private Object minLevel;
+    private Integer minLevel;
     @SerializedName("needs_overworld_rain")
     @Expose
     private Boolean needsOverworldRain;
     @SerializedName("party_species")
     @Expose
-    private Object partySpecies;
+    private PartyType partySpecies;
     @SerializedName("party_type")
     @Expose
-    private Object partyType;
+    private PartyType partyType;
     @SerializedName("relative_physical_stats")
     @Expose
     private Object relativePhysicalStats;
@@ -59,7 +62,7 @@ public class EvolutionDetail {
     private Trigger trigger;
     @SerializedName("turn_upside_down")
     @Expose
-    private Boolean turnUpsideDown;
+    private Boolean turnUpsideDown = false;
 
     public Object getGender() {
         return gender;
@@ -69,27 +72,27 @@ public class EvolutionDetail {
         this.gender = gender;
     }
 
-    public Object getHeldItem() {
+    public HeldItem getHeldItem() {
         return heldItem;
     }
 
-    public void setHeldItem(Object heldItem) {
+    public void setHeldItem(HeldItem heldItem) {
         this.heldItem = heldItem;
     }
 
-    public Object getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(Object item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
-    public Object getKnownMove() {
+    public KnownMoveType getKnownMove() {
         return knownMove;
     }
 
-    public void setKnownMove(Object knownMove) {
+    public void setKnownMove(KnownMoveType knownMove) {
         this.knownMove = knownMove;
     }
 
@@ -101,11 +104,11 @@ public class EvolutionDetail {
         this.knownMoveType = knownMoveType;
     }
 
-    public Object getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(Object location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -117,27 +120,27 @@ public class EvolutionDetail {
         this.minAffection = minAffection;
     }
 
-    public Object getMinBeauty() {
+    public Integer getMinBeauty() {
         return minBeauty;
     }
 
-    public void setMinBeauty(Object minBeauty) {
+    public void setMinBeauty(Integer minBeauty) {
         this.minBeauty = minBeauty;
     }
 
-    public Object getMinHappiness() {
+    public Integer getMinHappiness() {
         return minHappiness;
     }
 
-    public void setMinHappiness(Object minHappiness) {
+    public void setMinHappiness(Integer minHappiness) {
         this.minHappiness = minHappiness;
     }
 
-    public Object getMinLevel() {
+    public Integer getMinLevel() {
         return minLevel;
     }
 
-    public void setMinLevel(Object minLevel) {
+    public void setMinLevel(Integer minLevel) {
         this.minLevel = minLevel;
     }
 
@@ -149,19 +152,19 @@ public class EvolutionDetail {
         this.needsOverworldRain = needsOverworldRain;
     }
 
-    public Object getPartySpecies() {
+    public PartyType getPartySpecies() {
         return partySpecies;
     }
 
-    public void setPartySpecies(Object partySpecies) {
+    public void setPartySpecies(PartyType partySpecies) {
         this.partySpecies = partySpecies;
     }
 
-    public Object getPartyType() {
+    public PartyType getPartyType() {
         return partyType;
     }
 
-    public void setPartyType(Object partyType) {
+    public void setPartyType(PartyType partyType) {
         this.partyType = partyType;
     }
 
@@ -205,4 +208,33 @@ public class EvolutionDetail {
         this.turnUpsideDown = turnUpsideDown;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EvolutionDetail)) return false;
+        EvolutionDetail that = (EvolutionDetail) o;
+        return Objects.equals(gender, that.gender) &&
+                Objects.equals(heldItem, that.heldItem) &&
+                Objects.equals(item, that.item) &&
+                Objects.equals(knownMove, that.knownMove) &&
+                Objects.equals(knownMoveType, that.knownMoveType) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(minAffection, that.minAffection) &&
+                Objects.equals(minBeauty, that.minBeauty) &&
+                Objects.equals(minHappiness, that.minHappiness) &&
+                Objects.equals(minLevel, that.minLevel) &&
+                Objects.equals(needsOverworldRain, that.needsOverworldRain) &&
+                Objects.equals(partySpecies, that.partySpecies) &&
+                Objects.equals(partyType, that.partyType) &&
+                Objects.equals(relativePhysicalStats, that.relativePhysicalStats) &&
+                Objects.equals(timeOfDay, that.timeOfDay) &&
+                Objects.equals(tradeSpecies, that.tradeSpecies) &&
+                Objects.equals(trigger, that.trigger) &&
+                Objects.equals(turnUpsideDown, that.turnUpsideDown);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gender, heldItem, item, knownMove, knownMoveType, location, minAffection, minBeauty, minHappiness, minLevel, needsOverworldRain, partySpecies, partyType, relativePhysicalStats, timeOfDay, tradeSpecies, trigger, turnUpsideDown);
+    }
 }

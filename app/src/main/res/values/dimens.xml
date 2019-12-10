@@ -24,8 +24,8 @@
     <dimen name="fragment_signup_lblReturnsSignIn_marginBottom">18dp</dimen>
     <!--  Item  -->
     <dimen name="fragment_item_pokemon_clItemRoot_padding">8dp</dimen>
-    <dimen name="fragment_item_pokemon_imgPkm_layout_width">120dp</dimen>
-    <dimen name="fragment_item_pokemon_imgPkm_layout_height">120dp</dimen>
+    <dimen name="fragment_item_pokemon_imgPkm_layout_width">100dp</dimen>
+    <dimen name="fragment_item_pokemon_imgPkm_layout_height">100dp</dimen>
     <dimen name="fragment_item_pokemon_lblPkmNumber_layout_marginTop">18dp</dimen>
     <dimen name="fragment_item_pokemon_lblPkmNumber_layout_marginStart">12dp</dimen>
     <dimen name="fragment_item_pokemon_lblPkmName_layout_marginTop">18dp</dimen>
@@ -38,13 +38,102 @@
     <dimen name="fragment_pokemon_detail_imgPkm_layout_width">100dp</dimen>
     <dimen name="fragment_pokemon_detail_imgPkm_layout_height">100dp</dimen>
     <dimen name="fragment_pokemon_detail_lblNumber_marginStart">12dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblNumber_marginTop">22dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblNumber_marginTop">16dp</dimen>
     <dimen name="fragment_pokemon_detail_lblName_marginStart">12dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblName_marginTop">22dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblName_marginTop">16dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblCategory_marginStart">12dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblCategory_marginTop">4dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType1_marginEnd">22dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblType1_marginTop">16dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType1_marginTop">8dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType1_marginStart">12dp</dimen>
     <dimen name="fragment_pokemon_detail_lblType2_marginEnd">22dp</dimen>
-    <dimen name="fragment_pokemon_detail_lblType2_marginTop">16dp</dimen>
+    <dimen name="fragment_pokemon_detail_lblType2_marginTop">8dp</dimen>
+    <!--  Data Detail  -->
+    <dimen name="data_pokemon_detail_ClScroll_padding">8dp</dimen>
+<!--    Description-->
+    <dimen name="data_pokemon_detail_lblSpecies_marginTop">12dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_layout_width">320dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_paddingStart">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_paddingTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_paddingEnd">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblDescription_paddingBottom">8dp</dimen>
+<!--    Height-->
+    <dimen name="data_pokemon_detail_lblHeight_marginStart">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblHeight_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHeight_paddingStart">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblHeight_paddingTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblHeight_paddingEnd">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblHeight_paddingBottom">4dp</dimen>
+<!--    Weight-->
+    <dimen name="data_pokemon_detail_lblWeight_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblWeight_marginEnd">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblWeight_paddingStart">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblWeight_paddingTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblWeight_paddingEnd">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblWeight_paddingBottom">4dp</dimen>
+<!--    Abilities-->
+    <dimen name="data_pokemon_detail_lblAbilities_marginTop">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility1_layout_width">155dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility1_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility1_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility2_layout_width">155dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility2_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbility2_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHidden_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHidden_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHidden_padding">2dp</dimen>
+    <dimen name="data_pokemon_detail_lblHidden_paddingStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHidden_paddingEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbilityHidden_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbilityHidden_marginEnd">6dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbilityHidden_padding">2dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbilityHidden_paddingStart">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblAbilityHidden_paddingEnd">74dp</dimen>
+<!--    Stats-->
+    <dimen name="data_pokemon_detail_lblBaseStats_marginTop">16dp</dimen>
+    <dimen name="data_pokemon_detail_lblHp_layout_width">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblHp_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHp_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHpData_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblHpData_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAttack_layoutWidth">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblAttack_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblAttack_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblAttackData_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblAttackData_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblDefense_layout_width">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblDefense_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblDefense_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblDefenseData_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblDefense_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpAttack_layout_width">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpAttack_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpAttack_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpAttackData_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpAttackData_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpDefense_layout_width">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpDefense_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpDefense_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpDefenseData_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpDefenseData_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpeed_layout_width">85dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpeed_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpeed_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpeedData_marginTop">4dp</dimen>
+    <dimen name="data_pokemon_detail_lblSpeedData_marginEnd">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblTotalStats_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblTotalStats_marginEnd">32dp</dimen>
+    <dimen name="data_pokemon_detail_lblTotalStatsNumber_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lblTotalStatsNumber_marginTop">8dp</dimen>
+<!--    Evolution-->
+    <dimen name="data_pokemon_detail_lblEvolutionChain_marginTop">16dp</dimen>
+    <dimen name="data_pokemon_detail_lstEvolutionChain_marginTop">8dp</dimen>
+    <dimen name="data_pokemon_detail_lstEvolutionChain_marginStart">8dp</dimen>
+    <dimen name="data_pokemon_detail_lstEvolutionChain_marginEnd">8dp</dimen>
+    <dimen name="evolution_chain_item_imgPokeEvo_layout_width">70dp</dimen>
+    <dimen name="evolution_chain_item_imgPokeEvo_layout_height">70dp</dimen>
+    <dimen name="evolution_chain_item_lblPokemon_marginStart">16dp</dimen>
+    <dimen name="evolution_chain_item_lblWayEvolve_marginStart">62dp</dimen>
 
 </resources>

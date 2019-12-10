@@ -9,7 +9,7 @@ public class Chain {
 
     @SerializedName("evolution_details")
     @Expose
-    private List<Object> evolutionDetails = null;
+    private List<EvolutionDetail> evolutionDetails = null;
     @SerializedName("evolves_to")
     @Expose
     private List<EvolvesTo> evolvesTo = null;
@@ -20,11 +20,11 @@ public class Chain {
     @Expose
     private Species_ species;
 
-    public List<Object> getEvolutionDetails() {
+    public List<EvolutionDetail> getEvolutionDetails() {
         return evolutionDetails;
     }
 
-    public void setEvolutionDetails(List<Object> evolutionDetails) {
+    public void setEvolutionDetails(List<EvolutionDetail> evolutionDetails) {
         this.evolutionDetails = evolutionDetails;
     }
 

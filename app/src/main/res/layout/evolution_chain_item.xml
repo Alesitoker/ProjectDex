@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ClEvoChainItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgPokeEvo"
+            android:layout_width="@dimen/evolution_chain_item_imgPokeEvo_layout_width"
+            android:layout_height="@dimen/evolution_chain_item_imgPokeEvo_layout_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_no_img"
+            />
+
+        <TextView
+            android:id="@+id/lblPokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/evolution_chain_item_lblPokemon_marginStart"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgPokeEvo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1 - Bulbasaur" />
+
+        <TextView
+            android:id="@+id/lblWayEvolve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/evolution_chain_item_lblWayEvolve_marginStart"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPokeEvo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nivel 16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

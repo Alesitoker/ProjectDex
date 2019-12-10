@@ -11,7 +11,9 @@ import java.util.Collections;
 import java.util.List;
 
 import es.saladillo.alejandrodiaz.projectdex.base.Resource;
+import es.saladillo.alejandrodiaz.projectdex.data.local.model.EvoChain;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
+import es.saladillo.alejandrodiaz.projectdex.data.mapper.EvolutionChainMapper;
 import es.saladillo.alejandrodiaz.projectdex.data.mapper.PokemonMapper;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.PokeApiImpl;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.evolution.EvolutionChain;
@@ -31,7 +33,7 @@ public class RepositoryImpl implements Repository {
     private MutableLiveData<Resource<PokemonResponse>> liveData;
     private MutableLiveData<Resource<List<Pokemon>>> liveDataPokemons;
     private MutableLiveData<Resource<PokemonSpecies>> specieLiveData;
-    private MutableLiveData<Resource<EvolutionChain>> evolutionLiveData;
+    private MutableLiveData<Resource<List<EvoChain>>> evolutionLiveData;
     private List<Pokemon> pokemons;
     private int offsetControl = -1;
 
@@ -40,6 +42,8 @@ public class RepositoryImpl implements Repository {
 
         liveData = new MutableLiveData<>();
         liveDataPokemons = new MutableLiveData<>();
+        specieLiveData = new MutableLiveData<>();
+        evolutionLiveData = new MutableLiveData<>();
         pokemons = new ArrayList<>();
     }
 
@@ -82,7 +86,6 @@ public class RepositoryImpl implements Repository {
             @Override
             public void onResponse(@NonNull Call<PokemonResponse> call, @NonNull Response<PokemonResponse> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    Log.d("agua", response.body().getId()+ "   "+ response.body().getName());
                     liveData.postValue(Resource.success(response.body()));
                 } else {
                     liveData.postValue(Resource.error(new Exception(response.message())));
@@ -119,13 +122,14 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public LiveData<Resource<EvolutionChain>> queryEvolutions(int evoId) {
+    public LiveData<Resource<List<EvoChain>>> queryEvolutions(int evoId) {
         Call<EvolutionChain> call = POKEAPI.getPOKEAPI().queryEvolution(evoId);
         call.enqueue(new Callback<EvolutionChain>() {
             @Override
             public void onResponse(Call<EvolutionChain> call, Response<EvolutionChain> response) {
                 if (response.body() != null && response.isSuccessful()) {
-                    evolutionLiveData.postValue(Resource.success(response.body()));
+                    List<EvoChain> evoChains = EvolutionChainMapper.map(response.body().getChain());
+                    evolutionLiveData.postValue(Resource.success(new ArrayList<>(evoChains)));
                 } else {
                     evolutionLiveData.postValue(Resource.error(new Exception(response.message())));
                 }

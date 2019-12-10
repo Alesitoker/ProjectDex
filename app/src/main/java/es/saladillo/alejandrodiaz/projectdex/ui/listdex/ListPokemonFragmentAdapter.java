@@ -1,26 +1,18 @@
 package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -94,9 +86,16 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
         }
 
         public void bind(Pokemon pokemon) {
-            b.lblPkmNumber.setText(String.format("#%03d", pokemon.getId()));
-            b.lblPkmName.setText(StringUtils.CapitalizeFirstLetter(pokemon.getName()));
-            PicassoUtils.loadUrl(b.imgPkm, pokemon.getSprites().getFrontDefault());
+            String name = pokemon.getName();
+            String url;
+
+            b.lblPkmNumber.setText(b.clItemRoot.getContext().getString(R.string.id_pokemon,
+                    pokemon.getId()));
+            b.lblPkmName.setText(StringUtils.CapitalizeFirstLetter(name));
+            name = StringUtils.pokemonNameSprite(name);
+            pokemon.setImgUrl(name);
+            url = String.format("http://www.pokestadium.com/assets/img/sprites/official-art/%s.png", pokemon.getImgUrl());
+            PicassoUtils.loadUrl(b.imgPkm, url);
             showTypes(pokemon.getTypes());
         }
 
@@ -106,8 +105,7 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
                     b.lblType1.setText(type.getType().getName());
                     DrawableCompat.setTint(
                             DrawableCompat.wrap(b.lblType1.getBackground()),
-                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type))
-                    );
+                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type)));
                     if (types.size() == 1) {
                         b.lblType2.setVisibility(View.GONE);
                     }
@@ -116,8 +114,7 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
                     b.lblType2.setText(type.getType().getName());
                     DrawableCompat.setTint(
                             DrawableCompat.wrap(b.lblType2.getBackground()),
-                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type))
-                    );
+                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type)));
                 }
             }
         }

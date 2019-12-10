@@ -16,6 +16,8 @@
             android:id="@+id/imgPkm"
             android:layout_width="@dimen/fragment_pokemon_detail_imgPkm_layout_width"
             android:layout_height="@dimen/fragment_pokemon_detail_imgPkm_layout_height"
+            android:scaleType="centerCrop"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -42,6 +44,17 @@
             tools:text="Bulbasaur" />
 
         <TextView
+            android:id="@+id/lblCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fragment_pokemon_detail_lblCategory_marginStart"
+            android:layout_marginTop="@dimen/fragment_pokemon_detail_lblCategory_marginTop"
+            app:layout_constraintStart_toEndOf="@+id/imgPkm"
+            app:layout_constraintTop_toBottomOf="@+id/lblNumber"
+            tools:text="Seed Pokemon"
+            />
+
+        <TextView
             android:id="@+id/lblType1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,7 +67,7 @@
             app:layout_constraintEnd_toStartOf="@+id/lblType2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imgPkm"
-            app:layout_constraintTop_toBottomOf="@+id/lblNumber"
+            app:layout_constraintTop_toBottomOf="@+id/lblCategory"
             tools:text="Planta" />
 
         <TextView
@@ -69,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/lblType1"
-            app:layout_constraintTop_toBottomOf="@+id/lblNumber"
+            app:layout_constraintTop_toBottomOf="@+id/lblCategory"
             tools:text="Veneno" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

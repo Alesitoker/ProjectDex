@@ -13,7 +13,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
@@ -78,7 +77,7 @@ public class ListPokemonFragment extends Fragment {
     private void NavigateToDetailDex(Pokemon pokemon) {
         ListPokemonFragmentDirections.ActionListPokemonToPokemonDetail action =
                 ListPokemonFragmentDirections.actionListPokemonToPokemonDetail()
-                        .setName(pokemon.getName());
+                        .setId(pokemon.getId());
         navController.navigate(action);
     }
 
