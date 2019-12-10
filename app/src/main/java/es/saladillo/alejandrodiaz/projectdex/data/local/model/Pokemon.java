@@ -9,9 +9,10 @@ public class Pokemon {
 
     private Integer id;
     private Integer order;
+    private String filterId;
     private String name;
     private Sprites sprites;
-    private List<Type> types = null;
+    private List<Type> types;
     private String imgUrl;
 
     public Pokemon(Integer id, Integer order,String name, Sprites sprites, List<Type> types) {
@@ -48,5 +49,13 @@ public class Pokemon {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getFilterId() {
+        return filterId;
+    }
+
+    public void setFilterId(String filterId) {
+        this.filterId = filterId;
     }
 }

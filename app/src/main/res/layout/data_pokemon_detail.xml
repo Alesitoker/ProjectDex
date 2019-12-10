@@ -84,7 +84,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/lblHeight"
-                    app:layout_constraintTop_toBottomOf="@id/lblDescription" />
+                    app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
 
                 <TextView
                     android:id="@+id/lblAbilities"
@@ -95,7 +95,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblWeight" />
+                    app:layout_constraintTop_toBottomOf="@+id/lblWeight" />
 
                 <TextView
                     android:id="@+id/lblAbility1"
@@ -109,7 +109,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/lblAbility2"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblAbilities"
+                    app:layout_constraintTop_toBottomOf="@+id/lblAbilities"
                     tools:text="Clorofila" />
 
                 <TextView
@@ -136,7 +136,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/lblAbility1"
-                    app:layout_constraintTop_toBottomOf="@id/lblAbilities"
+                    app:layout_constraintTop_toBottomOf="@+id/lblAbilities"
                     tools:text="Clorofila" />
 
                 <TextView
@@ -368,7 +368,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lblSpeed" />
+                    app:layout_constraintTop_toBottomOf="@+id/lblSpeed" />
 
                 <TextView
                     android:id="@+id/lblTotalStatsNumber"
@@ -377,7 +377,7 @@
                     android:layout_marginStart="@dimen/data_pokemon_detail_lblTotalStatsNumber_marginStart"
                     android:layout_marginTop="@dimen/data_pokemon_detail_lblTotalStatsNumber_marginTop"
                     app:layout_constraintStart_toEndOf="@+id/lblTotalStats"
-                    app:layout_constraintTop_toBottomOf="@id/lblSpeed"
+                    app:layout_constraintTop_toBottomOf="@+id/lblSpeed"
                     tools:text="325" />
 
                 <TextView

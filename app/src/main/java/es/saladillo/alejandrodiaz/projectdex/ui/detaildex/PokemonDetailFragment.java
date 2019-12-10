@@ -66,6 +66,7 @@ public class PokemonDetailFragment extends Fragment {
         viewModel = ViewModelProviders.of(this, new PokemonDetailFragmentViewModelFactory(
                 Injector.provideRepository())).get(PokemonDetailFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
+        setupRecyclerView();
         if(savedInstanceState == null) {
             viewModel.queryPokemon(id);
             viewModel.querySpecie(id);
@@ -87,7 +88,7 @@ public class PokemonDetailFragment extends Fragment {
     }
 
     private void setupViews() {
-        setupRecyclerView();
+
     }
 
     private void setupDetail(PokemonResponse pokemon) {
@@ -203,7 +204,8 @@ public class PokemonDetailFragment extends Fragment {
     private void setupRecyclerView() {
         listAdapter = new PokemonEvolutionChainAdapter();
 
-        b.dData.lstEvolutionChain.setHasFixedSize(true);
+        b.dData.lstEvolutionChain.setHasFixedSize(false);
+        b.dData.lstEvolutionChain.setNestedScrollingEnabled(false);
         b.dData.lstEvolutionChain.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstEvoChain_columns)));
         b.dData.lstEvolutionChain.setAdapter(listAdapter);
     }

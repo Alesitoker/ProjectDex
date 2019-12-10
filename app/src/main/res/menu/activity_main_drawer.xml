@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/listPokemonFragment"
+            android:icon="@drawable/ic_pokeball"
+            android:title="@string/listPokemonFragment_title"
+            />
+        <item
+            android:id="@+id/listTeamsFragment"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/listTeamsFragment_title"
+            />
+    </group>
+    <group>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout_title"
+            />
+    </group>
+</menu>

@@ -1,4 +1,4 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
+package es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listPokemon;
 
 
 import androidx.lifecycle.LiveData;
@@ -15,7 +15,7 @@ import es.saladillo.alejandrodiaz.projectdex.base.Resource;
 import es.saladillo.alejandrodiaz.projectdex.data.Repository;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 
-public class ListPokemonFragmentViewModel extends ViewModel {
+public class ListTeamPokemonFragmentViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> queryPokemonsTrigger = new MutableLiveData<>();
     private final LiveData<Resource<List<Pokemon>>> queryPokemonsReply;
@@ -27,7 +27,7 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     private int offset = 0;
     private String searchQuery;
 
-    public ListPokemonFragmentViewModel(Repository repository) {
+    public ListTeamPokemonFragmentViewModel(Repository repository) {
         this.repository = repository;
 
         queryPokemonsReply = Transformations.switchMap(queryPokemonsTrigger,

@@ -8,7 +8,7 @@
         android:label="SignIn" >
         <action
             android:id="@+id/actionSignInToSignUp"
-            app:destination="@id/signUpFragment"
+            app:destination="@+id/signUpFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -24,7 +24,7 @@
         android:label="Pokedex" >
         <action
             android:id="@+id/actionListPokemonToPokemonDetail"
-            app:destination="@id/pokemonDetailFragment"
+            app:destination="@+id/pokemonDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -39,4 +39,24 @@
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>
+    <fragment
+        android:id="@+id/listTeamsFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listTeam.ListTeamsFragment"
+        android:label="Team Builder" >
+        <action
+            android:id="@+id/action_listTeamsFragment_to_teamCreatorFragment"
+            app:destination="@id/teamCreatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamCreatorFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.TeamCreatorFragment"
+        android:label="TeamCreatorFragment" >
+        <action
+            android:id="@+id/action_teamCreatorFragment_to_listTeamPokemonFragment"
+            app:destination="@id/listTeamPokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listTeamPokemonFragment"
+        android:name="es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listPokemon.ListTeamPokemonFragment"
+        android:label="ListTeamPokemonFragment" />
 </navigation>

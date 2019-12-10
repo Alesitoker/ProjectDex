@@ -39,7 +39,7 @@ public class LoginFirebaseRepository implements LoginRepository {
                 });
         return result;
     }
-//    TODO: Quitar log.
+
     @Override
     public LiveData<Resource<String>> signUp(String email, String password) {
         MutableLiveData<Resource<String>> result = new MutableLiveData<>();

@@ -2,4 +2,5 @@
 <resources>
     <integer name="lstPokemon_columns">1</integer>
     <integer name="lstEvoChain_columns">1</integer>
+    <integer name="lstTeamPokemon">1</integer>
 </resources>

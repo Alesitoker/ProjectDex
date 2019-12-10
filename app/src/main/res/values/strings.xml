@@ -42,4 +42,16 @@
     <string name="evolution_by_partyType">Level %d + %s Pokémon in the party</string>
     <string name="evolution_by_turn_upside_down">Level %d + turn upside-down</string>
     <string name="evolution_by_Affection">%sLevel + %d of affection</string>
+    <string name="fragment_list_pokemon">Search</string>
+    <string name="fragment_list_pokemon_mnuSearch_hint">Enter name</string>
+    <string name="fragment_team_creator_txtLTeamName">Team Name</string>
+    <string name="fragment_team_creator_lblPokeParty">Pokemon Party</string>
+    <string name="fragment_team_creator_mnuSave">Save</string>
+    <string name="fragment_teams_list_empty_text">You didn\'t create any teams yet...</string>
+    <string name="fragment_team_creator_mnuDelete">Delete</string>
+    <string name="logout_title">Logout</string>
+    <string name="listTeamsFragment_title">Team Builder</string>
+    <string name="listPokemonFragment_title">Pokédex</string>
+    <string name="activity_main_navHeader_lblUserName">Welcome, %s</string>
+    <string name="default_user_name">Trainer</string>
 </resources>

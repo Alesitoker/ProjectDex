@@ -1,8 +1,6 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
+package es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listPokemon;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -27,29 +24,18 @@ import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentListPokemonBinding;
+import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentPokemonTeamListBinding;
 import es.saladillo.alejandrodiaz.projectdex.di.Injector;
-import es.saladillo.alejandrodiaz.projectdex.ui.main.ToolbarConfigurationInterface;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 
-public class ListPokemonFragment extends Fragment {
+public class ListTeamPokemonFragment extends Fragment {
 
-    private FragmentListPokemonBinding b;
-    private ToolbarConfigurationInterface toolbarConfiguration;
-    private ListPokemonFragmentViewModel viewModel;
-    private ListPokemonFragmentAdapter listAdapter;
+    private FragmentPokemonTeamListBinding b;
+    private ListTeamPokemonFragmentViewModel viewModel;
+    private ListTeamPokemonFragmentAdapter listAdapter;
     private NavController navController;
     private MenuItem mnuSearch;
     private SearchView searchView;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        try {
-            toolbarConfiguration = (ToolbarConfigurationInterface) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Listener must implement ToolbarConfigurationInterface");
-        }
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,17 +72,16 @@ public class ListPokemonFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        b = FragmentListPokemonBinding.inflate(inflater, container, false);
+        b = FragmentPokemonTeamListBinding.inflate(inflater, container, false);
         return b.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(
-                Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this, new ListTeamPokemonFragmentViewModelFactory(
+                Injector.provideRepository())).get(ListTeamPokemonFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
-        setupToolbar();
         setupViews();
         observe();
         if (savedInstanceState == null)
@@ -118,17 +103,18 @@ public class ListPokemonFragment extends Fragment {
     }
 
     private void setupViews() {
+        setupToolbar();
         setupRecyclerView();
     }
 
     private void setupToolbar() {
         Toolbar toolbar = b.toolbar;
-        toolbarConfiguration.configureToolbar(toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
     }
 
     private void setupRecyclerView() {
-        listAdapter = new ListPokemonFragmentAdapter();
-        listAdapter.setOnSelectItemClickListener(position -> NavigateToDetailDex(listAdapter.getItem(position)));
+        listAdapter = new ListTeamPokemonFragmentAdapter();
+        listAdapter.setOnSelectItemClickListener(position -> NavigateToTeamCreator(listAdapter.getItem(position)));
 
         b.lstPokemon.setHasFixedSize(true);
         b.lstPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstPokemon_columns)));
@@ -136,11 +122,8 @@ public class ListPokemonFragment extends Fragment {
         b.lstPokemon.setAdapter(listAdapter);
     }
 
-    private void NavigateToDetailDex(Pokemon pokemon) {
-        ListPokemonFragmentDirections.ActionListPokemonToPokemonDetail action =
-                ListPokemonFragmentDirections.actionListPokemonToPokemonDetail()
-                        .setId(pokemon.getId());
-        navController.navigate(action);
+    private void NavigateToTeamCreator(Pokemon pokemon) {
+
     }
 
 

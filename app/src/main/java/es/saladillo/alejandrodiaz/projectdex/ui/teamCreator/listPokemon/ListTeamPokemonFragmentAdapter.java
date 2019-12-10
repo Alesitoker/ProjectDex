@@ -1,7 +1,6 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
+package es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listPokemon;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +21,20 @@ import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.Type;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentItemPokemonBinding;
+import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentPokemonTeamItemBinding;
 import es.saladillo.alejandrodiaz.projectdex.ui.OnSelectItemClickListener;
 import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.StringUtils;
 
 import static es.saladillo.alejandrodiaz.projectdex.utils.ColorTypeUtils.obtainColor;
 
-public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemonFragmentAdapter.ViewHolder> implements Filterable {
+public class ListTeamPokemonFragmentAdapter extends ListAdapter<Pokemon, ListTeamPokemonFragmentAdapter.ViewHolder> implements Filterable {
 
     private OnSelectItemClickListener onSelectItemClickListener;
     private List<Pokemon> dataList;
     private List<Pokemon> filteredList;
 
-    protected ListPokemonFragmentAdapter() {
+    protected ListTeamPokemonFragmentAdapter() {
         super(new DiffUtil.ItemCallback<Pokemon>() {
             @Override
             public boolean areItemsTheSame(@NonNull Pokemon oldItem, @NonNull Pokemon newItem) {
@@ -62,7 +61,7 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        FragmentItemPokemonBinding b = FragmentItemPokemonBinding.inflate(LayoutInflater.from(
+        FragmentPokemonTeamItemBinding b = FragmentPokemonTeamItemBinding.inflate(LayoutInflater.from(
                 parent.getContext()), parent, false);
         return new ViewHolder(b);
     }
@@ -127,9 +126,9 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private FragmentItemPokemonBinding b;
+        private FragmentPokemonTeamItemBinding b;
 
-        public ViewHolder(@NonNull FragmentItemPokemonBinding b) {
+        public ViewHolder(@NonNull FragmentPokemonTeamItemBinding b) {
             super(b.getRoot());
             this.b = b;
 

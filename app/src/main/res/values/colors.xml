@@ -20,6 +20,7 @@
     <color name="light_green">#C5E1A5</color>
     <color name="teal">#A7FFEB</color>
     <color name="teal_2">#B2DFDB</color>
+    <color name="dark_blue">#444F9C</color>
     <!--  Types  -->
     <color name="bug">#3B9950</color>
     <color name="dark">#5A5979</color>

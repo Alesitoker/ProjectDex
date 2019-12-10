@@ -5,7 +5,6 @@
     <data>
 
     </data>
-    <!--TODO: Cambiar tamaños por recursos de dimensión-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clRootLogin"
         android:layout_width="match_parent"

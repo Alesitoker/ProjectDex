@@ -1,8 +1,7 @@
-package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
+package es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listTeam;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,8 +11,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -23,21 +20,19 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+
 import es.saladillo.alejandrodiaz.projectdex.R;
-import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
-import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
-import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentListPokemonBinding;
-import es.saladillo.alejandrodiaz.projectdex.di.Injector;
+import es.saladillo.alejandrodiaz.projectdex.data.local.model.Team;
+import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamsListBinding;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.ToolbarConfigurationInterface;
-import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 
-public class ListPokemonFragment extends Fragment {
+public class ListTeamsFragment extends Fragment {
 
-    private FragmentListPokemonBinding b;
+    private FragmentTeamsListBinding b;
     private ToolbarConfigurationInterface toolbarConfiguration;
-    private ListPokemonFragmentViewModel viewModel;
-    private ListPokemonFragmentAdapter listAdapter;
+    private ListTeamsFragmentViewModel viewModel;
     private NavController navController;
+    private ListTeamsFragmentAdapter listAdapter;
     private MenuItem mnuSearch;
     private SearchView searchView;
 
@@ -82,43 +77,20 @@ public class ListPokemonFragment extends Fragment {
         });
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        b = FragmentListPokemonBinding.inflate(inflater, container, false);
+        b = FragmentTeamsListBinding.inflate(inflater, container, false);
         return b.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(
-                Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ListTeamsFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupToolbar();
-        setupViews();
-        observe();
-        if (savedInstanceState == null)
-            viewModel.queryPokemons();
-    }
-
-    private void observe() {
-        viewModel.getPokemons().observe(this, pokemons -> {
-            viewModel.queryPokemons();
-            listAdapter.submitList(pokemons);
-        });
-        viewModel.getMessage().observe(this, new EventObserver<>(this::showMessage));
-        viewModel.getLoading().observe(this, loading -> b.pbListPokemon.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
-    }
-
-    private void showMessage(String message) {
-        SnackbarUtils.snackbar(requireView(), message);
-        viewModel.queryPokemons();
-    }
-
-    private void setupViews() {
-        setupRecyclerView();
+        setupsViews();
     }
 
     private void setupToolbar() {
@@ -126,22 +98,23 @@ public class ListPokemonFragment extends Fragment {
         toolbarConfiguration.configureToolbar(toolbar);
     }
 
+    private void setupsViews() {
+        setupRecyclerView();
+
+        b.fabAdd.setOnClickListener(v -> navigateToTeamCreator(new Team()));
+    }
+
     private void setupRecyclerView() {
-        listAdapter = new ListPokemonFragmentAdapter();
-        listAdapter.setOnSelectItemClickListener(position -> NavigateToDetailDex(listAdapter.getItem(position)));
+        listAdapter = new ListTeamsFragmentAdapter();
+        listAdapter.setOnSelectItemClickListener(position -> navigateToTeamCreator(listAdapter.getItem(position)));
 
-        b.lstPokemon.setHasFixedSize(true);
-        b.lstPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstPokemon_columns)));
-        b.lstPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
-        b.lstPokemon.setAdapter(listAdapter);
+        b.lstTeamPokemon.setHasFixedSize(true);
+        b.lstTeamPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstTeamPokemon)));
+        b.lstTeamPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        b.lstTeamPokemon.setAdapter(listAdapter);
     }
 
-    private void NavigateToDetailDex(Pokemon pokemon) {
-        ListPokemonFragmentDirections.ActionListPokemonToPokemonDetail action =
-                ListPokemonFragmentDirections.actionListPokemonToPokemonDetail()
-                        .setId(pokemon.getId());
-        navController.navigate(action);
+    private void navigateToTeamCreator(Team team) {
+
     }
-
-
 }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Navigation drawer -->
+    <dimen name="activity_main_drawer_rlDrawerHeaderRoot_padding">16dp</dimen>
+    <dimen name="activity_main_drawer_rlDrawerHeaderRoot_height">100dp</dimen>
+    <dimen name="navigation_drawer_header_profile_marginTop">16dp</dimen>
+    <dimen name="activity_main_drawer_imgProfile_width">64dp</dimen>
     <!-- Sign In -->
     <dimen name="fragment_signin_txtLEmail_padding">16dp</dimen>
     <dimen name="fragment_signin_txtLPassword_padding">16dp</dimen>
@@ -135,5 +140,10 @@
     <dimen name="evolution_chain_item_imgPokeEvo_layout_height">70dp</dimen>
     <dimen name="evolution_chain_item_lblPokemon_marginStart">16dp</dimen>
     <dimen name="evolution_chain_item_lblWayEvolve_marginStart">62dp</dimen>
+    <dimen name="fragment_team_creator_lblPokeParty">16dp</dimen>
+    <dimen name="margin_fab">16dp</dimen>
+    <dimen name="fragment_team_creator_txtLTeamName_padding">16dp</dimen>
+    <dimen name="activity_main_navHeader_lblUserName_marginStart">8dp</dimen>
+    <dimen name="activity_main_navHeader_lblUserName_marginTop">28dp</dimen>
 
 </resources>
