@@ -26,6 +26,7 @@ import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentItemPokemonBind
 import es.saladillo.alejandrodiaz.projectdex.ui.OnSelectItemClickListener;
 import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.StringUtils;
+import es.saladillo.alejandrodiaz.projectdex.utils.TypesUtils;
 
 import static es.saladillo.alejandrodiaz.projectdex.utils.ColorTypeUtils.obtainColor;
 
@@ -149,29 +150,8 @@ public class ListPokemonFragmentAdapter extends ListAdapter<Pokemon, ListPokemon
             pokemon.setImgUrl(name);
             url = String.format("http://www.pokestadium.com/assets/img/sprites/official-art/%s.png", pokemon.getImgUrl());
             PicassoUtils.loadUrl(b.imgPkm, url);
-            showTypes(pokemon.getTypes());
-        }
-
-        private void showTypes(List<Type> types) {
-            for (Type type : types) {
-                if (type.getSlot() == 1) {
-                    b.lblType1.setText(type.getType().getName());
-                    DrawableCompat.setTint(
-                            DrawableCompat.wrap(b.lblType1.getBackground()),
-                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type)));
-                    if (types.size() == 1) {
-                        b.lblType2.setVisibility(View.GONE);
-                    }
-                } else {
-                    b.lblType2.setVisibility(View.VISIBLE);
-                    b.lblType2.setText(type.getType().getName());
-                    DrawableCompat.setTint(
-                            DrawableCompat.wrap(b.lblType2.getBackground()),
-                            ContextCompat.getColor(b.imgPkm.getContext(), obtainColor(type)));
-                }
-            }
+            TypesUtils.showType(b.imgPkm.getContext(), pokemon.getTypes(), b.lblType1, b.lblType2);
         }
     }
-    
 
 }

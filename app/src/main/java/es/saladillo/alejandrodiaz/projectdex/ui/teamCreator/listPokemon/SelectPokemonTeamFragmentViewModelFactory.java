@@ -6,17 +6,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import es.saladillo.alejandrodiaz.projectdex.data.Repository;
 
-public class ListTeamPokemonFragmentViewModelFactory implements ViewModelProvider.Factory {
+public class SelectPokemonTeamFragmentViewModelFactory implements ViewModelProvider.Factory {
 
     private Repository repository;
 
-    public ListTeamPokemonFragmentViewModelFactory(Repository repository) {
+    public SelectPokemonTeamFragmentViewModelFactory(Repository repository) {
         this.repository = repository;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new ListTeamPokemonFragmentViewModel(repository);
+        return (T) new SelectPokemonTeamFragmentViewModel(repository);
     }
 }

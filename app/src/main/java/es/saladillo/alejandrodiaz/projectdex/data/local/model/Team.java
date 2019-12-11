@@ -3,16 +3,13 @@ package es.saladillo.alejandrodiaz.projectdex.data.local.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Team implements Parcelable {
 
-    long id;
-    String teamName;
-    List<PokemonTeam> pokemons;
+    private long id;
+    private String teamName;
+    private PokemonTeam[] pokemons = new PokemonTeam[6];
 
-    public Team(long id, String teamName, List<PokemonTeam> pokemons) {
+    public Team(long id, String teamName, PokemonTeam[] pokemons) {
         this.id = id;
         this.teamName = teamName;
         this.pokemons = pokemons;
@@ -37,11 +34,11 @@ public class Team implements Parcelable {
         this.teamName = teamName;
     }
 
-    public List<PokemonTeam> getPokemons() {
+    public PokemonTeam[] getPokemons() {
         return pokemons;
     }
 
-    public void setPokemons(List<PokemonTeam> pokemons) {
+    public void setPokemons(PokemonTeam[] pokemons) {
         this.pokemons = pokemons;
     }
 
@@ -55,14 +52,13 @@ public class Team implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.id);
         dest.writeString(this.teamName);
-        dest.writeList(this.pokemons);
+        dest.writeTypedArray(this.pokemons, flags);
     }
 
     protected Team(Parcel in) {
         this.id = in.readLong();
         this.teamName = in.readString();
-        this.pokemons = new ArrayList<PokemonTeam>();
-        in.readList(this.pokemons, PokemonTeam.class.getClassLoader());
+        this.pokemons = in.createTypedArray(PokemonTeam.CREATOR);
     }
 
     public static final Creator<Team> CREATOR = new Creator<Team>() {

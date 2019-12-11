@@ -8,7 +8,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
+        android:id="@+id/CLPokemonTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/imgPokemon"
-            android:layout_width="80dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,19 +38,22 @@
 
         <TextView
             android:id="@+id/lblPokemonName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             tools:text="Bulbasaur"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/lblType1" />
 
         <TextView
             android:id="@+id/lblType1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/border_radius_type"
+            android:gravity="center"
             tools:text="Planta"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +61,10 @@
 
         <TextView
             android:id="@+id/lblType2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_radius_type"
+            android:gravity="center"
             tools:text="Veneno"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"

@@ -43,14 +43,12 @@ public class PokemonDetailFragment extends Fragment {
     private PokemonEvolutionChainAdapter listAdapter;
     private int id;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getArguments());
         PokemonDetailFragmentArgs args = PokemonDetailFragmentArgs.fromBundle(getArguments());
         id = args.getId();
-
     }
 
     @Nullable

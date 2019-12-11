@@ -6,199 +6,239 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/CLTeamCreator"
+    <LinearLayout
+        android:id="@+id/LLTeamCreator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtLTeamName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/fragment_team_creator_txtLTeamName"
-            android:paddingStart="@dimen/fragment_team_creator_txtLTeamName_padding"
-            android:paddingEnd="@dimen/fragment_team_creator_txtLTeamName_padding"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTeamName"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/CLTeamCreator"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLength="30" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:padding="8dp">
 
-        <TextView
-            android:id="@+id/lblPokeParty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fragment_team_creator_lblPokeParty"
-            android:text="@string/fragment_team_creator_lblPokeParty"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLTeamName" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtLTeamName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_team_creator_txtLTeamName_marginStart"
+                    android:layout_marginTop="@dimen/fragment_team_creator_txtLTeamName_marginTop"
+                    android:layout_marginEnd="@dimen/fragment_team_creator_txtLTeamName_marginEnd"
+                    android:hint="@string/fragment_team_creator_txtLTeamName"
+                    android:paddingStart="@dimen/fragment_team_creator_txtLTeamName_padding"
+                    android:paddingEnd="@dimen/fragment_team_creator_txtLTeamName_padding"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="30"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/AddPoke1"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/AddPoke2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtTeamName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="50"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <include
-            android:id="@+id/PokeParty1"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/PokeParty2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                <TextView
+                    android:id="@+id/lblPokeParty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fragment_team_creator_lblPokeParty"
+                    android:text="@string/fragment_team_creator_lblPokeParty"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLTeamName" />
 
-        <include
-            android:id="@+id/AddPoke2"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/AddPoke3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/AddPoke1"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                <include
+                    android:id="@+id/pokeParty1"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/pokeParty2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/PokeParty2"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/PokeParty3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PokeParty1"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                <include
+                    android:id="@+id/addPoke1"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/addPoke2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/AddPoke3"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/AddPoke2"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                <include
+                    android:id="@+id/pokeParty2"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/pokeParty3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pokeParty1"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/PokeParty3"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PokeParty2"
-            app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
+                <include
+                    android:id="@+id/addPoke2"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/addPoke3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/addPoke1"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/AddPoke4"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/AddPoke5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AddPoke1" />
+                <include
+                    android:id="@+id/pokeParty3"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pokeParty2"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/PokeParty4"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/PokeParty5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PokeParty1" />
+                <include
+                    android:id="@+id/addPoke3"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/addPoke2"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPokeParty" />
 
-        <include
-            android:id="@+id/AddPoke5"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/AddPoke6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/AddPoke4"
-            app:layout_constraintTop_toBottomOf="@+id/AddPoke1" />
+                <Button
+                    android:id="@+id/btnDeletePokemon"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:text="Remove"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/dark_blue"
+                    android:background="@drawable/border_radius_type"
+                    android:drawableLeft="@drawable/ic_delete_black_24dp"
+                    app:layout_constraintTop_toBottomOf="@id/pokeParty3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
 
-        <include
-            android:id="@+id/PokeParty5"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/PokeParty6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PokeParty4"
-            app:layout_constraintTop_toBottomOf="@+id/PokeParty1" />
+                <include
+                    android:id="@+id/pokeParty4"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/pokeParty5"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
 
-        <include
-            android:id="@+id/AddPoke6"
-            layout="@layout/fragment_team_creator_no_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/AddPoke5"
-            app:layout_constraintTop_toBottomOf="@+id/AddPoke1" />
+                <include
+                    android:id="@+id/addPoke4"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/addPoke5"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
 
-        <include
-            android:id="@+id/PokeParty6"
-            layout="@layout/fragment_team_creator_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PokeParty5"
-            app:layout_constraintTop_toBottomOf="@+id/PokeParty1" />
+                <include
+                    android:id="@+id/pokeParty5"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/pokeParty6"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pokeParty4"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
 
+                <include
+                    android:id="@+id/addPoke5"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/addPoke6"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/addPoke4"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <include
+                    android:id="@+id/pokeParty6"
+                    layout="@layout/fragment_team_creator_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pokeParty5"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
+
+                <include
+                    android:id="@+id/addPoke6"
+                    layout="@layout/fragment_team_creator_no_pokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/addPoke5"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeletePokemon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </layout>

@@ -145,5 +145,8 @@
     <dimen name="fragment_team_creator_txtLTeamName_padding">16dp</dimen>
     <dimen name="activity_main_navHeader_lblUserName_marginStart">8dp</dimen>
     <dimen name="activity_main_navHeader_lblUserName_marginTop">28dp</dimen>
+    <dimen name="fragment_team_creator_txtLTeamName_marginStart">8dp</dimen>
+    <dimen name="fragment_team_creator_txtLTeamName_marginTop">22dp</dimen>
+    <dimen name="fragment_team_creator_txtLTeamName_marginEnd">8dp</dimen>
 
 </resources>

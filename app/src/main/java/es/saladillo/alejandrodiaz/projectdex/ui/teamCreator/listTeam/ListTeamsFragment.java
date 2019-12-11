@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Team;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamsListBinding;
+import es.saladillo.alejandrodiaz.projectdex.ui.main.MainActivityViewModel;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.ToolbarConfigurationInterface;
 
 public class ListTeamsFragment extends Fragment {
@@ -31,10 +32,12 @@ public class ListTeamsFragment extends Fragment {
     private FragmentTeamsListBinding b;
     private ToolbarConfigurationInterface toolbarConfiguration;
     private ListTeamsFragmentViewModel viewModel;
+    private MainActivityViewModel activityViewModel;
     private NavController navController;
     private ListTeamsFragmentAdapter listAdapter;
     private MenuItem mnuSearch;
     private SearchView searchView;
+    private boolean noTeams = false;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -55,7 +58,8 @@ public class ListTeamsFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_list_pokemon, menu);
+        inflater.inflate(R.menu.fragment_teams_list, menu);
+
         mnuSearch = menu.findItem(R.id.mnuSearch);
         searchView = (SearchView) mnuSearch.getActionView();
         searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -71,10 +75,12 @@ public class ListTeamsFragment extends Fragment {
             public boolean onQueryTextChange(String query) {
                 // filter adapter when text is changed
                 listAdapter.getFilter().filter(query);
-                viewModel.setSearchQuery(query);
                 return false;
             }
         });
+        if (viewModel.isTeamsEmpty()) {
+            menu.getItem(0).setVisible(false);
+        }
     }
 
     @Nullable
@@ -88,9 +94,15 @@ public class ListTeamsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(ListTeamsFragmentViewModel.class);
+        activityViewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupToolbar();
         setupsViews();
+        observe();
+    }
+
+    private void observe() {
+
     }
 
     private void setupToolbar() {
@@ -101,7 +113,7 @@ public class ListTeamsFragment extends Fragment {
     private void setupsViews() {
         setupRecyclerView();
 
-        b.fabAdd.setOnClickListener(v -> navigateToTeamCreator(new Team()));
+        b.fabAdd.setOnClickListener(v -> navigateToTeamCreator(null));
     }
 
     private void setupRecyclerView() {
@@ -115,6 +127,8 @@ public class ListTeamsFragment extends Fragment {
     }
 
     private void navigateToTeamCreator(Team team) {
-
+        ListTeamsFragmentDirections.ActionListTeamsToTeamCreator action =
+                ListTeamsFragmentDirections.actionListTeamsToTeamCreator(team);
+        navController.navigate(action);
     }
 }

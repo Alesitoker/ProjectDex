@@ -1,5 +1,9 @@
 package es.saladillo.alejandrodiaz.projectdex.data.local.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +11,7 @@ import java.util.Objects;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.HeldItem;
 import es.saladillo.alejandrodiaz.projectdex.data.remote.dto.pokemon.Type;
 
-class PokemonTeam {
+public class PokemonTeam implements Parcelable {
 
     private int id;
     private int teamPosition;
@@ -21,13 +25,17 @@ class PokemonTeam {
     private String nature;
     private HeldItem heldItem;
 
-    public PokemonTeam(int id, String name, String category, List<Type> types, String imgUrl) {
+    public PokemonTeam(int id, int teamPosition,String name, List<Type> types, String imgUrl) {
         this.id = id;
+        this.teamPosition = teamPosition;
         this.name = name;
         this.nickName = name;
-        this.category = category;
         this.types = types;
         this.imgUrl = imgUrl;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNickName() {
@@ -78,6 +86,18 @@ class PokemonTeam {
         this.teamPosition = teamPosition;
     }
 
+    public List<Type> getTypes() {
+        return types;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,4 +122,52 @@ class PokemonTeam {
         result = 31 * result + Arrays.hashCode(moveSet);
         return result;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeInt(this.teamPosition);
+        dest.writeString(this.name);
+        dest.writeString(this.nickName);
+        dest.writeString(this.category);
+        dest.writeList(this.types);
+        dest.writeString(this.imgUrl);
+        dest.writeStringArray(this.moveSet);
+        dest.writeByte(this.level);
+        dest.writeString(this.nature);
+        dest.writeParcelable(this.heldItem, flags);
+    }
+
+    protected PokemonTeam(Parcel in) {
+        this.id = in.readInt();
+        this.teamPosition = in.readInt();
+        this.name = in.readString();
+        this.nickName = in.readString();
+        this.category = in.readString();
+        this.types = new ArrayList<Type>();
+        in.readList(this.types, Type.class.getClassLoader());
+        this.imgUrl = in.readString();
+        this.moveSet = in.createStringArray();
+        this.level = in.readByte();
+        this.nature = in.readString();
+        this.heldItem = in.readParcelable(HeldItem.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<PokemonTeam> CREATOR = new Parcelable.Creator<PokemonTeam>() {
+        @Override
+        public PokemonTeam createFromParcel(Parcel source) {
+            return new PokemonTeam(source);
+        }
+
+        @Override
+        public PokemonTeam[] newArray(int size) {
+            return new PokemonTeam[size];
+        }
+    };
 }

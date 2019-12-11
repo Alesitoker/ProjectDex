@@ -15,7 +15,7 @@ import es.saladillo.alejandrodiaz.projectdex.base.Resource;
 import es.saladillo.alejandrodiaz.projectdex.data.Repository;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 
-public class ListTeamPokemonFragmentViewModel extends ViewModel {
+public class SelectPokemonTeamFragmentViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> queryPokemonsTrigger = new MutableLiveData<>();
     private final LiveData<Resource<List<Pokemon>>> queryPokemonsReply;
@@ -25,9 +25,8 @@ public class ListTeamPokemonFragmentViewModel extends ViewModel {
     private Repository repository;
     private final int SUMOFFSET = 20;
     private int offset = 0;
-    private String searchQuery;
 
-    public ListTeamPokemonFragmentViewModel(Repository repository) {
+    public SelectPokemonTeamFragmentViewModel(Repository repository) {
         this.repository = repository;
 
         queryPokemonsReply = Transformations.switchMap(queryPokemonsTrigger,
@@ -57,14 +56,6 @@ public class ListTeamPokemonFragmentViewModel extends ViewModel {
                 message.setValue(new Event<>(resource.getException().getMessage()));
             }
         });
-    }
-
-    public String getSearchQuery() {
-        return searchQuery;
-    }
-
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
     }
 
     public void orderName() {
