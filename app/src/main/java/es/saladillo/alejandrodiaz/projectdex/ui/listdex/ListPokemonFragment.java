@@ -2,7 +2,6 @@ package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,8 +11,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -28,6 +25,7 @@ import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.Pokemon;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentListPokemonBinding;
 import es.saladillo.alejandrodiaz.projectdex.di.Injector;
+import es.saladillo.alejandrodiaz.projectdex.ui.main.DrawerLocker;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.ToolbarConfigurationInterface;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 
@@ -40,12 +38,14 @@ public class ListPokemonFragment extends Fragment {
     private NavController navController;
     private MenuItem mnuSearch;
     private SearchView searchView;
+    private DrawerLocker drawerLocker;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
             toolbarConfiguration = (ToolbarConfigurationInterface) context;
+            drawerLocker = (DrawerLocker) context;
         } catch (ClassCastException e) {
             throw new ClassCastException("Listener must implement ToolbarConfigurationInterface");
         }
@@ -96,11 +96,11 @@ public class ListPokemonFragment extends Fragment {
         viewModel = ViewModelProviders.of(this, new ListPokemonFragmentViewModelFactory(
                 Injector.provideRepository())).get(ListPokemonFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
+        drawerLocker.setDrawerEnabled(true);
         setupToolbar();
         setupViews();
         observe();
-        if (savedInstanceState == null)
-            viewModel.queryPokemons();
+        viewModel.queryPokemons();
     }
 
     private void observe() {

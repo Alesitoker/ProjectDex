@@ -1,6 +1,8 @@
 package es.saladillo.alejandrodiaz.projectdex.ui.listdex;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -67,16 +69,9 @@ public class ListPokemonFragmentViewModel extends ViewModel {
         this.searchQuery = searchQuery;
     }
 
-    public void orderName() {
-        if (pokemons.getValue() != null) {
-            List<Pokemon> listPokemon = pokemons.getValue();
-            Collections.sort(listPokemon, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-            pokemons.postValue(listPokemon);
-        }
-    }
-
     public void queryPokemons() {
-            queryPokemonsTrigger.setValue(offset);
+        Log.d("agua", String.valueOf(offset));
+        queryPokemonsTrigger.setValue(offset);
     }
 
     public LiveData<List<Pokemon>> getPokemons() {

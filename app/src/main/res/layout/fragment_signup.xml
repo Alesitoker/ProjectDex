@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_gradient">
+        android:background="@color/dark_blue">
 
         <ImageView
             android:layout_width="0dp"
@@ -30,7 +31,7 @@
             android:hint="@string/fragment_signup_txtEmail"
             android:paddingStart="@dimen/fragment_signup_txtLEmail_padding"
             android:paddingEnd="@dimen/fragment_signup_txtLEmail_padding"
-            app:layout_constraintBottom_toTopOf="@+id/txtLPassword"
+            app:layout_constraintBottom_toTopOf="@+id/txtLUserName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -43,6 +44,28 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/gray"
+            android:hint="@string/fragment_signup_txtLUserName"
+            android:paddingStart="@dimen/fragment_signup_txtLUserName_padding"
+            android:paddingEnd="@dimen/fragment_signup_txtLUserName_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:maxLength="15"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtLPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -50,17 +73,16 @@
             android:hint="@string/fragment_signup_txtLPassword"
             android:paddingStart="@dimen/fragment_signup_txtLPassword_padding"
             android:paddingEnd="@dimen/fragment_signup_txtLPassword_padding"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtLUserName"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,6 +125,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/pbListPokemon"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
-    app:startDestination="@id/listPokemonFragment">
+    app:startDestination="@id/signInFragment">
     <fragment
         android:id="@+id/signInFragment"
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.login.signin.SignInFragment"
@@ -13,6 +13,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/actionSignInToListPokemon"
+            app:destination="@id/listPokemonFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

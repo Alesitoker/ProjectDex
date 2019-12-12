@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/evolution_chain_item_lblPokemon_marginStart"
+            android:paddingEnd="16dp"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPokeEvo"
@@ -36,11 +37,11 @@
             android:id="@+id/lblWayEvolve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/evolution_chain_item_lblWayEvolve_marginStart"
             android:textColor="#000000"
+            android:maxLines="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgPokeEvo"
+            app:layout_constraintStart_toEndOf="@+id/lblPokemon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Nivel 16" />
 

@@ -18,15 +18,18 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
 
-public class MainActivity extends AppCompatActivity implements ToolbarConfigurationInterface, DrawerLocker {
+public class MainActivity extends AppCompatActivity implements ToolbarConfigurationInterface, DrawerLocker, setupStartDestination {
 
     private NavController navController;
     AppBarConfiguration appBarConfiguration;
@@ -39,8 +42,38 @@ public class MainActivity extends AppCompatActivity implements ToolbarConfigurat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navController = Navigation.findNavController(this, R.id.navHostFragment);
+        setupNavigationGraph();
         setupsViews();
 
+    }
+
+    @Override
+    public void setStartDestination() {
+        setupNavigationGraph();
+    }
+
+    private void setupNavigationGraph() {
+        int startDestinationResId = 0;
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        NavHostFragment navHost =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(
+                        R.id.navHostFragment);
+
+        NavController navController = navHost.getNavController();
+
+        NavInflater navInflater = navController.getNavInflater();
+
+        NavGraph navGraph = navInflater.inflate(R.navigation.main_navigation);
+
+        if(user != null) {
+            startDestinationResId = R.id.listPokemonFragment;
+        } else {
+            startDestinationResId = R.id.signInFragment;
+        }
+
+        navGraph.setStartDestination(startDestinationResId);
+        navController.setGraph(navGraph);
     }
 
     private void setupsViews() {
@@ -63,12 +96,17 @@ public class MainActivity extends AppCompatActivity implements ToolbarConfigurat
     }
 
     private void setupNavigationDrawer() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userName = getString(R.string.default_user_name);
         NavigationView navigationView =
                 ActivityCompat.requireViewById(this, R.id.navigationView);
 
         View headerLayout = navigationView.getHeaderView(0);
         TextView lblUserName = headerLayout.findViewById(R.id.lblUserName);
-        lblUserName.setText(getString(R.string.activity_main_navHeader_lblUserName, getString(R.string.default_user_name)));
+        if (user != null && user.getDisplayName() != null) {
+            userName = user.getDisplayName();
+        }
+        lblUserName.setText(getString(R.string.activity_main_navHeader_lblUserName, userName));
 
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -101,6 +139,10 @@ public class MainActivity extends AppCompatActivity implements ToolbarConfigurat
 
     @Override
     public void setDrawerEnabled(boolean enabled) {
+        if (!enabled)
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        else
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
     }
 

@@ -42,16 +42,22 @@ public class SignUpFragment extends Fragment {
                 new LoginFirebaseRepository())).get(SignUpFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupViews();
+        observe();
         observeErrorMessage();
         observeSuccessMessage();
     }
 
+    private void observe() {
+        viewModel.getLoading().observe(this, loading -> b.pbListPokemon.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
+    }
+
     private void setupViews() {
         b.btnSignUp.setOnClickListener(v -> signUp(b.txtEmail.getText().toString(),
-                b.txtPassword.getText().toString()));
+                b.txtPassword.getText().toString(), b.txtUserName.getText().toString()));
         b.lblReturnSignIn.setOnClickListener(v -> ReturnToSignIn());
 
         b.txtEmail.addTextChangedListener((TextUtils.AfterTextChanged) editable -> enableButton());
+        b.txtUserName.addTextChangedListener((TextUtils.AfterTextChanged) editable -> enableButton());
         b.txtPassword.addTextChangedListener((TextUtils.AfterTextChanged) editable -> enableButton());
     }
 
@@ -63,9 +69,9 @@ public class SignUpFragment extends Fragment {
         }
     }
 
-    private void signUp(String email, String password) {
+    private void signUp(String email, String password, String userName) {
         if (validateForm()) {
-            viewModel.singUp(email, password);
+            viewModel.singUp(email, password, userName);
         }
         KeyboardUtils.hideSoftKeyboard(requireActivity());
     }
@@ -81,7 +87,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private boolean validateForm() {
-        boolean validE = false, validP = false;
+        boolean validE = false, validP = false, validName = false;
 
         if (checkEmail()) {
             validE = true;
@@ -91,7 +97,14 @@ public class SignUpFragment extends Fragment {
             validP = true;
         }
 
-        return validE && validP;
+        if (!b.txtUserName.getText().toString().isEmpty()) {
+            validName = true;
+            b.txtLUserName.setErrorEnabled(false);
+        } else {
+            b.txtLUserName.setError(getString(R.string.error_invalid_username));
+        }
+
+        return validE && validP && validName;
     }
 
     private boolean checkEmail() {

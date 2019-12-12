@@ -55,4 +55,6 @@
     <string name="activity_main_navHeader_lblUserName">Welcome, %s</string>
     <string name="default_user_name">Trainer</string>
     <string name="default_team_name">Team Name</string>
+    <string name="fragment_signup_txtLUserName">Name</string>
+    <string name="error_invalid_username">Name cannot be empty</string>
 </resources>

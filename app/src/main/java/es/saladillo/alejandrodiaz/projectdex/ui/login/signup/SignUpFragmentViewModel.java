@@ -19,11 +19,12 @@ public class SignUpFragmentViewModel extends ViewModel {
     private final LiveData<Resource<String>> singUpLiveData;
     private final MediatorLiveData<Event<String>> errorMessage = new MediatorLiveData<>();
     private final MediatorLiveData<Event<String>> successMessage = new MediatorLiveData<>();
+    private final MediatorLiveData<Boolean> loading = new MediatorLiveData<>();
 
     public SignUpFragmentViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
         singUpLiveData = Transformations.switchMap(singUpTrigger, user ->
-                loginRepository.signUp(user.getEmail(), user.getPasssword()));
+                loginRepository.signUp(user.getEmail(), user.getPasssword(), user.getUserName()));
 
         setupErrorMessage();
         setupSuccessMessage();
@@ -43,17 +44,29 @@ public class SignUpFragmentViewModel extends ViewModel {
                 successMessage.setValue(new Event<>(resource.getData()));
             }
         });
+
+        loading.addSource(singUpLiveData, resource -> {
+            if(resource.isLoading()) {
+                loading.setValue(resource.isLoading());
+            } else if (!resource.isLoading()) {
+                loading.setValue(false);
+            }
+        });
     }
 
-    LiveData<Event<String>> errorMessage() {
+    public LiveData<Event<String>> errorMessage() {
         return errorMessage;
     }
 
-    LiveData<Event<String>> successMessage() {
+    public LiveData<Event<String>> successMessage() {
         return successMessage;
     }
 
-    void singUp(String email, String password) {
-        singUpTrigger.setValue(new User(email, password));
+    public LiveData<Boolean> getLoading() {
+        return loading;
+    }
+
+    void singUp(String email, String password, String userName) {
+        singUpTrigger.setValue(new User(email, password, userName));
     }
 }

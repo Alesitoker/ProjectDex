@@ -148,5 +148,6 @@
     <dimen name="fragment_team_creator_txtLTeamName_marginStart">8dp</dimen>
     <dimen name="fragment_team_creator_txtLTeamName_marginTop">22dp</dimen>
     <dimen name="fragment_team_creator_txtLTeamName_marginEnd">8dp</dimen>
+    <dimen name="fragment_signup_txtLUserName_padding">16dp</dimen>
 
 </resources>

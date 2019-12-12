@@ -1,5 +1,6 @@
 package es.saladillo.alejandrodiaz.projectdex.ui.login.signin;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
 import es.saladillo.alejandrodiaz.projectdex.data.LoginFirebaseRepository;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentSigninBinding;
+import es.saladillo.alejandrodiaz.projectdex.ui.main.DrawerLocker;
+import es.saladillo.alejandrodiaz.projectdex.ui.main.setupStartDestination;
 import es.saladillo.alejandrodiaz.projectdex.utils.KeyboardUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.TextUtils;
@@ -25,6 +28,19 @@ public class SignInFragment extends Fragment {
     private FragmentSigninBinding b;
     private SignInFragmentViewModel viewModel;
     private NavController navController;
+    private DrawerLocker drawerLocker;
+    private setupStartDestination setupStartDestination;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            drawerLocker = (DrawerLocker) context;
+            setupStartDestination = (setupStartDestination) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Listener must implement ToolbarConfigurationInterface");
+        }
+    }
 
     @Nullable
     @Override
@@ -39,9 +55,15 @@ public class SignInFragment extends Fragment {
         viewModel = ViewModelProviders.of(this, new SignInFragmentViewModelFactory(
                 new LoginFirebaseRepository())).get(SignInFragmentViewModel.class);
         navController = NavHostFragment.findNavController(this);
+        drawerLocker.setDrawerEnabled(false);
         setupViews();
+        observe();
         observeErrorMessage();
         observeSuccessMessage();
+    }
+
+    private void observe() {
+        viewModel.getLoading().observe(this, loading -> b.pbListPokemon.setVisibility(loading ? View.VISIBLE : View.INVISIBLE));
     }
 
     private void setupViews() {
@@ -73,7 +95,14 @@ public class SignInFragment extends Fragment {
 
     private void observeSuccessMessage() {
         viewModel.successMessage().observe(getViewLifecycleOwner(),
-                new EventObserver<>(this::showMessage));
+                new EventObserver<>(message -> {
+                    setupStartDestination.setStartDestination();
+//                    navigateToListPokemon();
+                }));
+    }
+
+    private void navigateToListPokemon() {
+        navController.navigate(R.id.actionSignInToListPokemon);
     }
 
     private void showMessage(String message) {

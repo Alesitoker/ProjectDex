@@ -126,7 +126,6 @@ public class ListTeamsFragment extends Fragment {
 
         b.lstTeamPokemon.setHasFixedSize(true);
         b.lstTeamPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstTeamPokemon)));
-//        b.lstTeamPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         b.lstTeamPokemon.setAdapter(listAdapter);
     }
 

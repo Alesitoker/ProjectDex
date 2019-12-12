@@ -1,15 +1,13 @@
 package es.saladillo.alejandrodiaz.projectdex.data.local.model;
 
-public class User {
+public class UserSignin {
 
     private String email;
     private String passsword;
-    private String userName;
 
-    public User(String email, String passsword, String userName) {
+    public UserSignin(String email, String passsword) {
         this.email = email;
         this.passsword = passsword;
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -18,9 +16,5 @@ public class User {
 
     public String getPasssword() {
         return passsword;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 }
