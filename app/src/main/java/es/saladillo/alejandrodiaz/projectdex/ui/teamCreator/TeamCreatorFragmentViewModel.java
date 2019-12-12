@@ -67,9 +67,7 @@ public class TeamCreatorFragmentViewModel extends ViewModel {
 
     public void addPokemon(PokemonTeam pokemonTeam) {
         if (pokemonsTeam[pokemonTeam.getTeamPosition()] != null)
-            Log.d("agua", pokemonsTeam[pokemonTeam.getTeamPosition()].getNickName());
         this.pokemonsTeam[pokemonTeam.getTeamPosition()] = pokemonTeam;
-        Log.d("agua", pokemonsTeam[pokemonTeam.getTeamPosition()].getNickName());
     }
 
     public PokemonTeam getPokemon(int position) {

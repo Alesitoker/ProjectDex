@@ -8,9 +8,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CLDetailH"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_border_radius"
+        android:backgroundTint="#FAFAFA"
+        >
 
         <ImageView
             android:id="@+id/imgPkm"

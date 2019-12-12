@@ -36,14 +36,17 @@ public class MainActivity extends AppCompatActivity implements ToolbarConfigurat
     private DrawerLayout drawerLayout;
     private static final String PREFERENCES_FILE = "prefs";
     private static final String PREF_NAV_DRAWER_OPENED = "navdrawerOpened";
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navController = Navigation.findNavController(this, R.id.navHostFragment);
+        firebaseAuth = FirebaseAuth.getInstance();
         setupNavigationGraph();
         setupsViews();
+
 
     }
 
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarConfigurat
 
     private void setupNavigationGraph() {
         int startDestinationResId = 0;
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         NavHostFragment navHost =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(

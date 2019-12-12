@@ -44,7 +44,7 @@
             android:layout_marginEnd="@dimen/margin_fab"
             android:layout_marginBottom="@dimen/margin_fab"
             android:src="@drawable/ic_group_add_white_24dp"
-            android:backgroundTint="@color/blue_button"
+            android:backgroundTint="@color/dark_blue"
             app:borderWidth="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -70,7 +70,6 @@ public class ListPokemonFragmentViewModel extends ViewModel {
     }
 
     public void queryPokemons() {
-        Log.d("agua", String.valueOf(offset));
         queryPokemonsTrigger.setValue(offset);
     }
 

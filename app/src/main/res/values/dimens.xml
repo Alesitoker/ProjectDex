@@ -18,7 +18,6 @@
     <dimen name="fragment_signin_lblNotRegistered_marginEnd">8dp</dimen>
     <dimen name="fragment_signin_lblNotRegistered_marginBottom">16dp</dimen>
     <dimen name="fragment_signin_lblNotRegistered_paddingTop">12dp</dimen>
-    <dimen name="fragment_signin_lblNotRegistered_paddingBottom">16dp</dimen>
     <!--  Sign Up  -->
     <dimen name="fragment_signup_txtLEmail_padding">16dp</dimen>
     <dimen name="fragment_signup_txtLPassword_padding">16dp</dimen>
@@ -131,6 +130,7 @@
     <dimen name="data_pokemon_detail_lblTotalStats_marginEnd">32dp</dimen>
     <dimen name="data_pokemon_detail_lblTotalStatsNumber_marginStart">8dp</dimen>
     <dimen name="data_pokemon_detail_lblTotalStatsNumber_marginTop">8dp</dimen>
+    <dimen name="fragment_signin_lblNotRegistered_paddingBottom">18dp</dimen>
 <!--    Evolution-->
     <dimen name="data_pokemon_detail_lblEvolutionChain_marginTop">16dp</dimen>
     <dimen name="data_pokemon_detail_lstEvolutionChain_marginTop">8dp</dimen>
@@ -149,5 +149,7 @@
     <dimen name="fragment_team_creator_txtLTeamName_marginTop">22dp</dimen>
     <dimen name="fragment_team_creator_txtLTeamName_marginEnd">8dp</dimen>
     <dimen name="fragment_signup_txtLUserName_padding">16dp</dimen>
+    <dimen name="fragment_signin_padding">16dp</dimen>
+    <dimen name="fragment_signup_padding">16dp</dimen>
 
 </resources>

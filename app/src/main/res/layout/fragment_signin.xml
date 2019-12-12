@@ -10,13 +10,14 @@
         android:id="@+id/clRootLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dark_blue">
+        android:background="@color/white"
+        >
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/ic_logopd"
+            android:padding="@dimen/fragment_signin_padding"
             app:layout_constraintBottom_toTopOf="@+id/txtLEmail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
             android:id="@+id/txtLEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/dark_blue"
             android:hint="@string/fragment_signin_txtLEmail"
             android:paddingStart="@dimen/fragment_signin_txtLEmail_padding"
             android:paddingEnd="@dimen/fragment_signin_txtLEmail_padding"
@@ -46,7 +47,7 @@
             android:id="@+id/txtLPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/dark_blue"
             android:hint="@string/fragment_signin_txtLPassword"
             android:paddingStart="@dimen/fragment_signin_txtLPassword_padding"
             android:paddingEnd="@dimen/fragment_signin_txtLPassword_padding"
@@ -87,7 +88,7 @@
             android:layout_marginStart="@dimen/fragment_signin_btnLogin_marginStart"
             android:layout_marginTop="@dimen/fragment_signin_btnLogin_marginTop"
             android:layout_marginEnd="@dimen/fragment_signin_btnLogin_marginEnd"
-            android:textColor="@color/gray"
+            android:textColor="@color/white"
             android:text="@string/fragment_signin_btnLogin"
             android:textStyle="bold"
             android:enabled="false"
@@ -96,23 +97,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLPassword" />
 
+        <ImageView
+            android:id="@+id/separatorReturn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/separator_shape"
+            app:layout_constraintBottom_toTopOf="@+id/lblNotRegistered"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/lblNotRegistered"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fragment_signin_lblNotRegistered_marginStart"
             android:layout_marginEnd="@dimen/fragment_signin_lblNotRegistered_marginEnd"
-            android:layout_marginBottom="@dimen/fragment_signin_lblNotRegistered_marginBottom"
             android:gravity="center"
             android:paddingTop="@dimen/fragment_signin_lblNotRegistered_paddingTop"
             android:paddingBottom="@dimen/fragment_signin_lblNotRegistered_paddingBottom"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_blue"
             android:text="@string/fragment_signin_lblNotRegistered"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblForgotPassword" />
+            />
 
         <ProgressBar
             android:id="@+id/pbListPokemon"
