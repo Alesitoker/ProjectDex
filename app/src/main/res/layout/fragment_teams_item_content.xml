@@ -11,13 +11,17 @@
         android:id="@+id/CLItemContent"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius_type"
+        android:backgroundTint="@color/gray"
+        >
 
         <ImageView
             android:id="@+id/imgPokemon"
-            android:layout_width="80dp"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

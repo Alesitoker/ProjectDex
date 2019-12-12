@@ -1,13 +1,11 @@
 package es.saladillo.alejandrodiaz.projectdex.data;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import es.saladillo.alejandrodiaz.projectdex.base.Resource;

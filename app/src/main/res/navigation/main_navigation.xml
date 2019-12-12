@@ -52,8 +52,8 @@
         android:name="es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.TeamCreatorFragment"
         android:label="Team Editor" >
         <argument
-            android:name="Team"
-            app:argType="es.saladillo.alejandrodiaz.projectdex.data.local.model.Team"
+            android:name="TeamDataB"
+            app:argType="es.saladillo.alejandrodiaz.projectdex.data.local.model.TeamDataB"
             app:nullable="true" />
         <action
             android:id="@+id/actionTeamCreatorToSelectPokemonTeam"

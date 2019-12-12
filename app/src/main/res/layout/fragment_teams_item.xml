@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/CLTeamsItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="8dp">
 
         <TextView
             android:id="@+id/lblTeamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,78 +26,78 @@
             tools:text="Team Name" />
 
         <include
-            android:id="@+id/lblPoke1"
+            android:id="@+id/Poke1"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintTop_toBottomOf="@+id/lblTeamName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/lblPoke2" />
+            app:layout_constraintEnd_toStartOf="@+id/Poke2" />
 
         <include
-            android:id="@+id/lblPoke2"
+            android:id="@+id/Poke2"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintTop_toBottomOf="@+id/lblTeamName"
-            app:layout_constraintEnd_toStartOf="@+id/lblPoke3"
-            app:layout_constraintStart_toEndOf="@+id/lblPoke1" />
+            app:layout_constraintEnd_toStartOf="@+id/Poke3"
+            app:layout_constraintStart_toEndOf="@+id/Poke1" />
 
         <include
-            android:id="@+id/lblPoke3"
+            android:id="@+id/Poke3"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintTop_toBottomOf="@+id/lblTeamName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblPoke2" />
+            app:layout_constraintStart_toEndOf="@+id/Poke2" />
 
         <include
-            android:id="@+id/lblPoke4"
+            android:id="@+id/Poke4"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toBottomOf="@+id/lblPoke1"
+            app:layout_constraintTop_toBottomOf="@+id/Poke1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/lblPoke5" />
+            app:layout_constraintEnd_toStartOf="@+id/Poke5" />
 
         <include
-            android:id="@+id/lblPoke5"
+            android:id="@+id/Poke5"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toBottomOf="@+id/lblPoke1"
-            app:layout_constraintEnd_toStartOf="@+id/lblPoke6"
-            app:layout_constraintStart_toEndOf="@+id/lblPoke4" />
+            app:layout_constraintTop_toBottomOf="@+id/Poke1"
+            app:layout_constraintEnd_toStartOf="@+id/Poke6"
+            app:layout_constraintStart_toEndOf="@+id/Poke4" />
 
         <include
-            android:id="@+id/lblPoke6"
+            android:id="@+id/Poke6"
             layout="@layout/fragment_teams_item_content"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toBottomOf="@+id/lblPoke1"
+            app:layout_constraintTop_toBottomOf="@+id/Poke1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblPoke5" />
+            app:layout_constraintStart_toEndOf="@+id/Poke5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

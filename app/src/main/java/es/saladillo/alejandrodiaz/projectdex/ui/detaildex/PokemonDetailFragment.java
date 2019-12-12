@@ -76,7 +76,10 @@ public class PokemonDetailFragment extends Fragment {
     private void observe() {
         viewModel.getPokemon().observe(this, this::setupDetail);
         viewModel.getSpecies().observe(this, this::setupSpecie);
-        viewModel.getEvoChains().observe(this, evoChains -> listAdapter.submitList(evoChains));
+        viewModel.getEvoChains().observe(this, evoChains -> {
+            b.dData.lblEvolutionChain.setVisibility(evoChains.size() == 0 ? View.INVISIBLE : View.VISIBLE);
+            listAdapter.submitList(evoChains);
+        });
         viewModel.getMessage().observe(this, new EventObserver<>(this::showMessage));
     }
 

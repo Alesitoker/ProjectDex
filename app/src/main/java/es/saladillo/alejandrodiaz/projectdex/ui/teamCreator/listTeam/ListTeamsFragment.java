@@ -2,6 +2,7 @@ package es.saladillo.alejandrodiaz.projectdex.ui.teamCreator.listTeam;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,8 +23,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 
 import es.saladillo.alejandrodiaz.projectdex.R;
-import es.saladillo.alejandrodiaz.projectdex.data.local.model.Team;
+import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
+import es.saladillo.alejandrodiaz.projectdex.data.local.model.TeamDataB;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamsListBinding;
+import es.saladillo.alejandrodiaz.projectdex.di.Injector;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.MainActivityViewModel;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.ToolbarConfigurationInterface;
 
@@ -78,9 +81,6 @@ public class ListTeamsFragment extends Fragment {
                 return false;
             }
         });
-        if (viewModel.isTeamsEmpty()) {
-            menu.getItem(0).setVisible(false);
-        }
     }
 
     @Nullable
@@ -93,7 +93,8 @@ public class ListTeamsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(ListTeamsFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this, new ListTeamsFragmentViewModelFactory(
+                Injector.provideDataBaseRepository(requireContext()))).get(ListTeamsFragmentViewModel.class);
         activityViewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         navController = NavHostFragment.findNavController(this);
         setupToolbar();
@@ -102,7 +103,10 @@ public class ListTeamsFragment extends Fragment {
     }
 
     private void observe() {
-
+        viewModel.queryTeams().observe(this, teams -> {
+            listAdapter.submitList(teams);
+            b.lblEmptyView.setVisibility(teams.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+        });
     }
 
     private void setupToolbar() {
@@ -122,13 +126,13 @@ public class ListTeamsFragment extends Fragment {
 
         b.lstTeamPokemon.setHasFixedSize(true);
         b.lstTeamPokemon.setLayoutManager(new GridLayoutManager(requireContext(), getResources().getInteger(R.integer.lstTeamPokemon)));
-        b.lstTeamPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+//        b.lstTeamPokemon.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         b.lstTeamPokemon.setAdapter(listAdapter);
     }
 
-    private void navigateToTeamCreator(Team team) {
+    private void navigateToTeamCreator(TeamDataB teamDataB) {
         ListTeamsFragmentDirections.ActionListTeamsToTeamCreator action =
-                ListTeamsFragmentDirections.actionListTeamsToTeamCreator(team);
+                ListTeamsFragmentDirections.actionListTeamsToTeamCreator(teamDataB);
         navController.navigate(action);
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,25 +24,23 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.palette.graphics.Palette;
 
-import com.google.android.gms.common.util.ArrayUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import es.saladillo.alejandrodiaz.projectdex.R;
 import es.saladillo.alejandrodiaz.projectdex.base.EventObserver;
 import es.saladillo.alejandrodiaz.projectdex.data.local.model.PokemonTeam;
-import es.saladillo.alejandrodiaz.projectdex.data.local.model.Team;
+import es.saladillo.alejandrodiaz.projectdex.data.local.model.TeamDataB;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamCreatorBinding;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamCreatorNoPokemonBinding;
 import es.saladillo.alejandrodiaz.projectdex.databinding.FragmentTeamCreatorPokemonBinding;
+import es.saladillo.alejandrodiaz.projectdex.di.Injector;
 import es.saladillo.alejandrodiaz.projectdex.ui.main.MainActivityViewModel;
 import es.saladillo.alejandrodiaz.projectdex.utils.KeyboardUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.PicassoUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.SnackbarUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.StringUtils;
 import es.saladillo.alejandrodiaz.projectdex.utils.TypesUtils;
-
-import static es.saladillo.alejandrodiaz.projectdex.utils.ColorTypeUtils.obtainColor;
 
 public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
 
@@ -58,14 +54,14 @@ public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
     private final int TEAMPOSITION4 = 3;
     private final int TEAMPOSITION5 = 4;
     private final int TEAMPOSITION6 = 5;
-    private Team team;
+    private TeamDataB teamDataB;
     private final int maxSizetxt = 30;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         TeamCreatorFragmentArgs args = TeamCreatorFragmentArgs.fromBundle(getArguments());
-        team = args.getTeam();
+        teamDataB = args.getTeamDataB();
     }
 
     @Override
@@ -78,7 +74,7 @@ public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_team_creator, menu);
-        if(team == null) {
+        if(teamDataB == null) {
             menu.getItem(1).setVisible(false);
         }
     }
@@ -105,13 +101,16 @@ public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(TeamCreatorFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(this, new TeamCreatorFragmentViewModelFactory(
+                Injector.provideDataBaseRepository(requireContext()))).get(TeamCreatorFragmentViewModel.class);
         activityViewModel = ViewModelProviders.of(requireActivity()).get(MainActivityViewModel.class);
         navController = NavHostFragment.findNavController(this);
-        if(savedInstanceState == null) {
-            viewModel.setTeam(team);
-            if(viewModel.getTeam() != null) {
-                viewModel.setPokemonsTeam(team.getPokemons());
+        if(savedInstanceState == null && viewModel.isFirst()) {
+            viewModel.setTeamDataB(teamDataB);
+            if(viewModel.getTeamDataB() != null) {
+                b.txtTeamName.setText(viewModel.getTeamDataB().getTeamName());
+                viewModel.obtainPokemonsTeam();
+                viewModel.setFirst(false);
             }
         }
         setupViews();
@@ -124,10 +123,17 @@ public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
     }
 
     private void observe() {
+        viewModel.getSuccessMessage().observe(this, new EventObserver<>(message -> showMessage(message)));
+        viewModel.getErrorMessage().observe(this, new EventObserver<>(message -> showMessage(message)));
         activityViewModel.getTransferedPokemon().observe(this, new EventObserver<>(pokemonTeam -> {
             viewModel.addPokemon(pokemonTeam);
             configTeam(pokemonTeam);
         }));
+    }
+
+    private void showMessage(String message) {
+        SnackbarUtils.snackbar(b.CLTeamCreator, message);
+        navController.popBackStack();
     }
 
     private void configTeam(PokemonTeam pokemonTeam) {
@@ -282,35 +288,55 @@ public class TeamCreatorFragment<TEAMPOSITION1> extends Fragment {
     }
 
     private void save() {
+        boolean isNull = true;
+        boolean exit = false;
         KeyboardUtils.hideSoftKeyboard(requireActivity());
         if (b.txtTeamName.getText().toString().length() < maxSizetxt) {
-            activityViewModel.setTransferedTeam(createTeam());
+            for(int i = 0; i < viewModel.getPokemonsTeam().length && isNull; i++) {
+                if (viewModel.getPokemon(i) != null) {
+                    isNull = false;
+                } else {
+                    isNull = true;
+                }
+            }
+            if (!isNull) {
+                if (viewModel.getTeamDataB() != null) {
+                    viewModel.updateTeam(createTeam());
+                } else {
+                    viewModel.insertTeam(createTeam());
+                }
+            } else {
+                navController.popBackStack();
+            }
         } else {
-            SnackbarUtils.snackbar(b.txtTeamName, "Very long team name");
+            SnackbarUtils.snackbar(b.txtTeamName, "Very long teamDataB name");
         }
     }
 
-    private Team createTeam() {
-        long id;
+    private TeamDataB createTeam() {
+        TeamDataB teamDataB;
+        long id = viewModel.getTeamDataB() != null ? viewModel.getTeamDataB().getId() : 0;
         String teamName;
-
-        if (viewModel.getTeam() != null) {
-            id = viewModel.getTeam().getId();
-        } else {
-            id = viewModel.getIdTeam();
-        }
 
         if(b.txtTeamName.getText().toString().isEmpty()) {
             teamName = getString(R.string.default_team_name);
         } else {
             teamName = b.txtTeamName.getText().toString();
         }
+        teamDataB = new TeamDataB(id, teamName);
+        teamDataB.setPokemon1(viewModel.getPokemon(TEAMPOSITION1));
+        teamDataB.setPokemon2(viewModel.getPokemon(TEAMPOSITION2));
+        teamDataB.setPokemon3(viewModel.getPokemon(TEAMPOSITION3));
+        teamDataB.setPokemon4(viewModel.getPokemon(TEAMPOSITION4));
+        teamDataB.setPokemon5(viewModel.getPokemon(TEAMPOSITION5));
+        teamDataB.setPokemon6(viewModel.getPokemon(TEAMPOSITION6));
 
-        return new Team(id, teamName, viewModel.getPokemonsTeam());
-
+        return teamDataB;
     }
 
     private void deleteTeam() {
+        TeamDataB team = createTeam();
 
+        viewModel.deleteTeam(team);
     }
 }

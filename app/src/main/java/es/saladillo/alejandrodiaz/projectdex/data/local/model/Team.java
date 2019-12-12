@@ -1,29 +1,19 @@
 package es.saladillo.alejandrodiaz.projectdex.data.local.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class Team implements Parcelable {
+public class Team {
 
     private long id;
     private String teamName;
-    private PokemonTeam[] pokemons = new PokemonTeam[6];
+    private PokemonTeam pokemon1;
+    private PokemonTeam pokemon2;
+    private PokemonTeam pokemon3;
+    private PokemonTeam pokemon4;
+    private PokemonTeam pokemon5;
+    private PokemonTeam pokemon6;
 
-    public Team(long id, String teamName, PokemonTeam[] pokemons) {
+    public Team(long id, String teamName) {
         this.id = id;
         this.teamName = teamName;
-        this.pokemons = pokemons;
-    }
-
-    public Team() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTeamName() {
@@ -34,42 +24,51 @@ public class Team implements Parcelable {
         this.teamName = teamName;
     }
 
-    public PokemonTeam[] getPokemons() {
-        return pokemons;
+    public PokemonTeam getPokemon1() {
+        return pokemon1;
     }
 
-    public void setPokemons(PokemonTeam[] pokemons) {
-        this.pokemons = pokemons;
+    public void setPokemon1(PokemonTeam pokemon1) {
+        this.pokemon1 = pokemon1;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public PokemonTeam getPokemon2() {
+        return pokemon2;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.id);
-        dest.writeString(this.teamName);
-        dest.writeTypedArray(this.pokemons, flags);
+    public void setPokemon2(PokemonTeam pokemon2) {
+        this.pokemon2 = pokemon2;
     }
 
-    protected Team(Parcel in) {
-        this.id = in.readLong();
-        this.teamName = in.readString();
-        this.pokemons = in.createTypedArray(PokemonTeam.CREATOR);
+    public PokemonTeam getPokemon3() {
+        return pokemon3;
     }
 
-    public static final Creator<Team> CREATOR = new Creator<Team>() {
-        @Override
-        public Team createFromParcel(Parcel source) {
-            return new Team(source);
-        }
+    public void setPokemon3(PokemonTeam pokemon3) {
+        this.pokemon3 = pokemon3;
+    }
 
-        @Override
-        public Team[] newArray(int size) {
-            return new Team[size];
-        }
-    };
+    public PokemonTeam getPokemon4() {
+        return pokemon4;
+    }
+
+    public void setPokemon4(PokemonTeam pokemon4) {
+        this.pokemon4 = pokemon4;
+    }
+
+    public PokemonTeam getPokemon5() {
+        return pokemon5;
+    }
+
+    public void setPokemon5(PokemonTeam pokemon5) {
+        this.pokemon5 = pokemon5;
+    }
+
+    public PokemonTeam getPokemon6() {
+        return pokemon6;
+    }
+
+    public void setPokemon6(PokemonTeam pokemon6) {
+        this.pokemon6 = pokemon6;
+    }
 }

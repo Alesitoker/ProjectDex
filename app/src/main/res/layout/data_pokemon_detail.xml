@@ -387,6 +387,7 @@
                     android:layout_marginTop="@dimen/data_pokemon_detail_lblEvolutionChain_marginTop"
                     android:text="@string/data_pokemon_detail_lblEvolutionChain"
                     android:textStyle="bold"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lblTotalStats" />

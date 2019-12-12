@@ -3,6 +3,8 @@ package es.saladillo.alejandrodiaz.projectdex.data.local.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.TypeConverter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,14 +20,12 @@ public class PokemonTeam implements Parcelable {
     private String name;
     private String nickName;
     private String category;
-    private List<Type> types = null;
+    private List<Type> types;
     private String imgUrl;
-    private String[] moveSet = new String[4];
     private byte level = 1;
     private String nature;
-    private HeldItem heldItem;
 
-    public PokemonTeam(int id, int teamPosition,String name, List<Type> types, String imgUrl) {
+    public PokemonTeam(int id, int teamPosition, String name, List<Type> types, String imgUrl) {
         this.id = id;
         this.teamPosition = teamPosition;
         this.name = name;
@@ -46,14 +46,6 @@ public class PokemonTeam implements Parcelable {
         this.nickName = nickName;
     }
 
-    public String[] getMoveSet() {
-        return moveSet;
-    }
-
-    public void setMoveSet(String[] moveSet) {
-        this.moveSet = moveSet;
-    }
-
     public byte getLevel() {
         return level;
     }
@@ -70,16 +62,20 @@ public class PokemonTeam implements Parcelable {
         this.nature = nature;
     }
 
-    public HeldItem getHeldItem() {
-        return heldItem;
-    }
-
-    public void setHeldItem(HeldItem heldItem) {
-        this.heldItem = heldItem;
-    }
-
     public int getTeamPosition() {
         return teamPosition;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public void setTeamPosition(int teamPosition) {
@@ -99,32 +95,6 @@ public class PokemonTeam implements Parcelable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PokemonTeam)) return false;
-        PokemonTeam that = (PokemonTeam) o;
-        return id == that.id &&
-                teamPosition == that.teamPosition &&
-                level == that.level &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(nickName, that.nickName) &&
-                Objects.equals(category, that.category) &&
-                Objects.equals(types, that.types) &&
-                Objects.equals(imgUrl, that.imgUrl) &&
-                Arrays.equals(moveSet, that.moveSet) &&
-                Objects.equals(nature, that.nature) &&
-                Objects.equals(heldItem, that.heldItem);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(id, teamPosition, name, nickName, category, types, imgUrl, level, nature, heldItem);
-        result = 31 * result + Arrays.hashCode(moveSet);
-        return result;
-    }
-
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -138,10 +108,8 @@ public class PokemonTeam implements Parcelable {
         dest.writeString(this.category);
         dest.writeList(this.types);
         dest.writeString(this.imgUrl);
-        dest.writeStringArray(this.moveSet);
         dest.writeByte(this.level);
         dest.writeString(this.nature);
-        dest.writeParcelable(this.heldItem, flags);
     }
 
     protected PokemonTeam(Parcel in) {
@@ -153,13 +121,11 @@ public class PokemonTeam implements Parcelable {
         this.types = new ArrayList<Type>();
         in.readList(this.types, Type.class.getClassLoader());
         this.imgUrl = in.readString();
-        this.moveSet = in.createStringArray();
         this.level = in.readByte();
         this.nature = in.readString();
-        this.heldItem = in.readParcelable(HeldItem.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<PokemonTeam> CREATOR = new Parcelable.Creator<PokemonTeam>() {
+    public static final Creator<PokemonTeam> CREATOR = new Creator<PokemonTeam>() {
         @Override
         public PokemonTeam createFromParcel(Parcel source) {
             return new PokemonTeam(source);
